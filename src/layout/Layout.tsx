@@ -7,9 +7,9 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="flex">
+    <div>
       <Navbar />
-      <main>{children}</main>
+      <main className="ml-[20%]">{children}</main>
     </div>
   );
 };
