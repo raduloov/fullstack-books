@@ -1,3 +1,5 @@
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
+
 import getRandomColor from '../../utils/getRandomColor';
 
 interface Props {
@@ -20,7 +22,7 @@ const BookSliderCard = ({ title, imageUrl, author, category, url }: Props) => {
         alt="Book thumbnail"
       />
       <div
-        className={`h-40 rounded-tl-3xl rounded-tr-3xl p-5 mt-20`}
+        className="flex h-40 rounded-tl-3xl rounded-tr-3xl p-5 mt-20"
         style={{
           background: backgroundGradient
         }}
@@ -31,6 +33,13 @@ const BookSliderCard = ({ title, imageUrl, author, category, url }: Props) => {
           <div className="bg-green-300 rounded-2xl px-3 py-1 inline-block">
             {category && <p className="text-gray-600">{category}</p>}
           </div>
+        </div>
+        <div className="ml-5">
+          <FaRegHeart
+            size={30}
+            color="#ff0000"
+            className="hover:scale-105 cursor-pointer"
+          />
         </div>
       </div>
     </div>

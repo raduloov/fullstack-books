@@ -6,6 +6,7 @@ import BookSliderCard from './BookSliderCard';
 import { BASE_URL } from '../../apis/googleBooks';
 import ShowMoreButton from './ShowMoreButton';
 import getSliderPosition, { SliderPositions } from '../../utils/getSliderPosition';
+import ActivityIndicator from './ActivityIndicator';
 
 const MAX_ALLOWED_BOOKS_ON_PAGE = 5;
 const MAX_ALLOWED_START_INDEX = 155;
@@ -26,7 +27,7 @@ const LibrarySlider = ({ name }: Props) => {
   const sliderEndRef = useRef<HTMLDivElement | null>(null);
 
   const { data, isLoading } = useFetch(
-    `${BASE_URL}/?q=subject:${name}&startIndex=${startIndex}&maxResults=${MAX_ALLOWED_BOOKS_ON_PAGE}`
+    `${BASE_URL}?q=subject:${name}&startIndex=${startIndex}&maxResults=${MAX_ALLOWED_BOOKS_ON_PAGE}`
   );
 
   const loadMore = (direction: string) => {
@@ -76,7 +77,10 @@ const LibrarySlider = ({ name }: Props) => {
           />
         </div>
       </div>
-      <div ref={sliderRef} className="flex overflow-x-scroll whitespace-nowrap pb-5">
+      <div
+        ref={sliderRef}
+        className="flex overflow-x-scroll whitespace-nowrap pb-5 h-60"
+      >
         <div className="h-60 w-8 z-10 bg-gradient-to-r from-white to-transparent absolute" />
         {!isLoading && data ? (
           <>
@@ -94,9 +98,7 @@ const LibrarySlider = ({ name }: Props) => {
             <div ref={sliderEndRef} />
           </>
         ) : (
-          <div className="flex flex-1 justify-center items-center h-60">
-            <ThreeDots color="#8b5cf6" height={90} width={90} />
-          </div>
+          <ActivityIndicator color="#8b5cf6" size={90} />
         )}
         <div className="h-60 w-8 z-10 bg-gradient-to-l from-white to-transparent absolute right-0" />
       </div>

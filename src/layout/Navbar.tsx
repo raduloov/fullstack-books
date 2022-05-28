@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import NavbarItem from '../components/UI/NavbarItem';
+import NavbarItem from '../components/navbar/NavbarItem';
 import Switch from 'react-switch';
 
 enum NavbarItemName {
