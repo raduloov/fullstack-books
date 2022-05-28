@@ -1,4 +1,5 @@
 import React from 'react';
+import UserCard from '../components/UI/UserCard';
 import Navbar from './Navbar';
 
 interface LayoutProps {
@@ -9,7 +10,12 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <div>
       <Navbar />
-      <main className="ml-[20%]">{children}</main>
+      <main className="ml-[20%]">
+        <div className="flex justify-end items-center px-10 py-5">
+          <UserCard />
+        </div>
+        {children}
+      </main>
     </div>
   );
 };

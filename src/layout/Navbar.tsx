@@ -27,7 +27,7 @@ const Navbar = () => {
         <div className="mt-5">
           <p className="px-5 mt-10 mb-5 text-gray-400">DISCOVER</p>
           <NavbarItem to="/search" emoji="🔎" name={NavbarItemName.SEARCH} />
-          <NavbarItem to="/for-you" emoji="💖" name={NavbarItemName.FOR_YOU} />
+          <NavbarItem to="/" emoji="💖" name={NavbarItemName.FOR_YOU} />
         </div>
         <div>
           <p className="px-5 mt-10 mb-5 text-gray-400">LIBRARY</p>

@@ -1,4 +1,4 @@
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './index.css';
 
 import Layout from './layout/Layout';
@@ -8,7 +8,9 @@ function App() {
   return (
     <BrowserRouter>
       <Layout>
-        <MainPage />
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+        </Routes>
       </Layout>
     </BrowserRouter>
   );

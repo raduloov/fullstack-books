@@ -1,9 +1,24 @@
 import { FaPlay } from 'react-icons/fa';
 
-const ShowMoreButton = () => {
+interface Props {
+  direction: string;
+  disabled: boolean;
+  onClick: (direction: string) => void;
+}
+
+const ShowMoreButton = ({ direction, disabled, onClick }: Props) => {
   return (
-    <button className="group flex justify-center items-center bg-gray-300 p-3 rounded-full shadow-xl hover:shadow-md hover:bg-violet-500 duration-200">
-      <FaPlay className="h-6 w-6 group-hover:text-white duration-200" />
+    <button
+      onClick={() => onClick(direction)}
+      className={`group flex justify-center items-center ${
+        disabled ? 'bg-gray-200' : 'bg-gray-300 hover:shadow-md hover:bg-violet-500'
+      } p-3 rounded-full shadow-xl duration-200`}
+    >
+      <FaPlay
+        className={`h-6 w-6  duration-200 ${direction === 'left' && 'rotate-180'} ${
+          disabled ? 'text-gray-300' : 'group-hover:text-white'
+        }`}
+      />
     </button>
   );
 };
