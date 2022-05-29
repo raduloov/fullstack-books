@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { BASE_URL } from '../apis/googleBooks';
+import COLORS from '../colors';
 import ActivityIndicator from '../components/UI/ActivityIndicator';
 import BookSliderCard from '../components/UI/BookSliderCard';
 import { useAppSelector } from '../hooks/useRedux';
@@ -54,7 +55,9 @@ const SearchPage = () => {
       {!isLoading && !books.length && (
         <p>Search for a book in the input field above</p>
       )}
-      {isLoading && <ActivityIndicator color="#8b5cf6" size={130} />}
+      {isLoading && (
+        <ActivityIndicator color={COLORS.ACCENT_COLOR_LIGHT_MODE} size={130} />
+      )}
     </div>
   );
 };

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
 import NavbarItem from '../components/navbar/NavbarItem';
 import Switch from 'react-switch';
+import COLORS from '../colors';
+import useDarkMode from '../hooks/useDarkMode';
 
 enum NavbarItemName {
   SEARCH = 'Search',
@@ -13,7 +14,7 @@ enum NavbarItemName {
 }
 
 const Navbar = () => {
-  const [darkMode, setDarkMode] = useState<boolean>(false);
+  const { darkMode, toggle } = useDarkMode();
 
   return (
     <div className="flex flex-col justify-between w-[20%] h-[100vh] px-[3%] py-10 fixed">
@@ -58,12 +59,12 @@ const Navbar = () => {
         <p className="text-3xl">🌞</p>
         <Switch
           onChange={() => {
-            setDarkMode(prevState => !prevState);
+            toggle();
           }}
           checked={darkMode}
           checkedIcon={false}
           uncheckedIcon={false}
-          onColor="#8b5cf6"
+          onColor={COLORS.ACCENT_COLOR_DARK_MODE}
           offColor="#a8a29e"
           className="mx-5"
         />

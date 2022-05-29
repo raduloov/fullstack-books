@@ -20,7 +20,9 @@ const getSliderPosition = (
    */
   if (
     slider.scrollWidth - slider.scrollLeft === slider.clientWidth ||
+    slider.scrollWidth - slider.scrollLeft === slider.clientWidth - 0.5 ||
     slider.scrollWidth - slider.scrollLeft === slider.clientWidth + 0.5 ||
+    slider.scrollWidth - slider.scrollLeft === slider.clientWidth - 1 ||
     slider.scrollWidth - slider.scrollLeft === slider.clientWidth + 1
   ) {
     return SliderPositions.END;

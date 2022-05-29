@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-import { ThreeDots } from 'react-loader-spinner';
 
 import useFetch from '../../hooks/useFetch';
 import BookSliderCard from './BookSliderCard';
@@ -7,6 +6,7 @@ import { BASE_URL } from '../../apis/googleBooks';
 import ShowMoreButton from './ShowMoreButton';
 import getSliderPosition, { SliderPositions } from '../../utils/getSliderPosition';
 import ActivityIndicator from './ActivityIndicator';
+import COLORS from '../../colors';
 
 const MAX_ALLOWED_BOOKS_ON_PAGE = 5;
 const MAX_ALLOWED_START_INDEX = 155;
@@ -62,7 +62,7 @@ const LibrarySlider = ({ name }: Props) => {
   return (
     <div className="py-8">
       <div className="flex justify-between items-center px-3">
-        <h2 className="text-4xl font-bold">{name}</h2>
+        <h2 className="text-4xl font-bold dark:text-white">{name}</h2>
         <div className="flex mr-5">
           <ShowMoreButton
             direction={ButtonDirections.LEFT}
@@ -81,7 +81,7 @@ const LibrarySlider = ({ name }: Props) => {
         ref={sliderRef}
         className="flex overflow-x-scroll whitespace-nowrap pb-5 h-60"
       >
-        <div className="h-60 w-8 z-10 bg-gradient-to-r from-white to-transparent absolute" />
+        <div className="h-60 w-8 z-10 bg-gradient-to-r from-white to-transparent absolute dark:from-stone-800" />
         {!isLoading && data ? (
           <>
             <div ref={sliderStartRef} />
@@ -98,9 +98,9 @@ const LibrarySlider = ({ name }: Props) => {
             <div ref={sliderEndRef} />
           </>
         ) : (
-          <ActivityIndicator color="#8b5cf6" size={90} />
+          <ActivityIndicator color={COLORS.ACCENT_COLOR_DARK_MODE} size={90} />
         )}
-        <div className="h-60 w-8 z-10 bg-gradient-to-l from-white to-transparent absolute right-0" />
+        <div className="h-60 w-8 z-10 bg-gradient-to-l from-white to-transparent absolute right-0 dark:from-stone-800" />
       </div>
     </div>
   );

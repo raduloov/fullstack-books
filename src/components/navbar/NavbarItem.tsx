@@ -12,8 +12,10 @@ const NavbarItem = ({ to, name, emoji }: Props) => {
       to={to}
       className={navData =>
         `${
-          navData.isActive ? 'bg-violet-500 text-white shadow-xl' : ''
-        } flex rounded-3xl my-5 py-3 px-8 cursor-pointer hover:shadow-md ease duration-200`
+          navData.isActive
+            ? 'bg-violet-500 dark:bg-violet-400 text-white dark:text-black shadow-xl'
+            : ''
+        } flex dark:text-white rounded-3xl my-5 py-3 px-8 cursor-pointer hover:shadow-md ease duration-200`
       }
     >
       <p className="mr-4">{emoji}</p>

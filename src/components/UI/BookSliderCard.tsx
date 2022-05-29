@@ -1,4 +1,5 @@
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { BsImage } from 'react-icons/bs';
 
 import getRandomColor from '../../utils/getRandomColor';
 
@@ -28,8 +29,8 @@ const BookSliderCard = ({ title, imageUrl, author, category, url }: Props) => {
         }}
       >
         <div className="ml-32">
-          <p className="font-bold text-xl mb-3">{title}</p>
-          <p className="text-gray text-gray-600 mb-3">{author}</p>
+          <p className="font-bold text-xl mb-3 dark:text-white">{title}</p>
+          <p className="text-gray text-gray-600 mb-3 dark:text-gray-300">{author}</p>
           <div className="bg-green-300 rounded-2xl px-3 py-1 inline-block">
             {category && <p className="text-gray-600">{category}</p>}
           </div>

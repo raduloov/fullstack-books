@@ -8,7 +8,7 @@ interface Props {
 
 const ActivityIndicator = ({ color, size }: Props) => {
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center h-full w-full">
       <ThreeDots color={color} height={size} width={size} />
     </div>
   );

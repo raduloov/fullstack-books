@@ -10,12 +10,12 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div>
+    <div className="dark:text-white">
       <Navbar />
       <main className="ml-[20%]">
-        <div className="flex justify-between items-center px-10 py-5">
+        <div className="flex justify-between items-center p-10">
           <SearchBar />
-          <UserCard />
+          <UserCard isLoggedIn={false} />
         </div>
         {children}
       </main>
