@@ -13,7 +13,7 @@ const ShowMoreButton = ({ direction, disabled, onClick }: Props) => {
       className={`group flex justify-center items-center ${
         disabled
           ? 'bg-gray-200'
-          : 'bg-gray-300 hover:shadow-md hover:bg-violet-500 dark:hover:bg-violet-400'
+          : 'bg-gray-300 hover:shadow-md hover:bg-violet-500 dark:hover:bg-violet-300'
       } p-3 rounded-full shadow-xl duration-200`}
     >
       <FaPlay

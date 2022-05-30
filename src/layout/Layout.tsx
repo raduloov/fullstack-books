@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from '../components/footer/Footer';
 
 import SearchBar from '../components/header/SearchBar';
 import UserCard from '../components/header/UserCard';
@@ -18,6 +19,7 @@ const Layout = ({ children }: LayoutProps) => {
           <UserCard isLoggedIn={false} />
         </div>
         {children}
+        <Footer />
       </main>
     </div>
   );

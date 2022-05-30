@@ -2,9 +2,7 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   darkMode: 'class',
   theme: {
-    extend: {
-      backgroundColor: '#000'
-    },
+    extend: {},
     screens: {
       sm: { max: '450px' },
       md: { max: '1480px' },

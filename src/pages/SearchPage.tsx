@@ -39,7 +39,7 @@ const SearchPage = () => {
   }, [searchTerm]);
 
   return (
-    <div className="flex flex-wrap justify-center h-[80vh]">
+    <div className="flex flex-wrap justify-center">
       {!isLoading &&
         books.length > 0 &&
         books.map((book: any, index: number) => (
@@ -53,7 +53,12 @@ const SearchPage = () => {
           />
         ))}
       {!isLoading && !books.length && (
-        <p>Search for a book in the input field above</p>
+        <div className="h-[70vh] flex flex-col justify-center text-center">
+          <p className="text-4xl">No books found 💔</p>
+          <p className="text-2xl mt-3">
+            Search for a book with the search bar above
+          </p>
+        </div>
       )}
       {isLoading && (
         <ActivityIndicator color={COLORS.ACCENT_COLOR_LIGHT_MODE} size={130} />

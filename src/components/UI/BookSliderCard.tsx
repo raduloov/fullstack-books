@@ -1,5 +1,4 @@
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
-import { BsImage } from 'react-icons/bs';
 
 import getRandomColor from '../../utils/getRandomColor';
 

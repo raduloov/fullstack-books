@@ -13,21 +13,17 @@ const SearchBar = () => {
   const navigate = useNavigate();
 
   const searchHandler = async (searchTerm: string) => {
-    // const data = await axios.get(
-    //   `${BASE_URL}?q=${searchTerm}&maxResults=${MAX_ALLOWED_BOOKS}`
-    // );
-
     dispatch(searchActions.setSearchTerm(searchTerm));
 
     return navigate('/search');
   };
 
   return (
-    <div className="flex items-center focus-within:scale-110 duration-200">
-      <div className="flex items-center bg-gray-200 rounded-l-lg h-10 px-3">
+    <div className="flex items-center focus-within:outline-none focus-within:ring-violet-500 focus-within:border-violet-500 dark:focus-within:ring-violet-300 dark:focus-within:border-violet-300 duration-200">
+      <div className="flex items-center dark:bg-stone-800 border-2 border-gray-300 dark:border-stone-500 text-gray-900 dark:text-gray-300 rounded-l-xl h-10 px-3">
         <AiOutlineSearch size={25} color="#777" />
         <input
-          className="bg-gray-200 outline-none px-3 w-[600px]"
+          className="dark:bg-stone-800 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-gray-300 focus:outline-none w-[600px]"
           type="text"
           placeholder="Search for a book..."
           onChange={e => setSearchTerm(e.target.value)}
@@ -42,13 +38,13 @@ const SearchBar = () => {
       </div>
       <button
         onClick={() => setSearchTerm('')}
-        className="flex justify-center items-center border-l-[1px] border-gray-500 bg-gray-200 px-2 h-10 hover:bg-gray-300"
+        className="flex justify-center items-center dark:bg-stone-800 border-y-2 border-gray-300 dark:border-stone-500 dark:text-gray-300 px-2 h-10 hover:bg-gray-300 dark:hover:bg-stone-700"
       >
         <FiDelete size={25} color="#777" />
       </button>
       <button
         onClick={() => searchHandler(searchTerm)}
-        className="flex justify-center items-center border-l-[1px] border-gray-500 bg-gray-200 rounded-r-lg px-2 h-10 hover:bg-gray-300"
+        className="flex justify-center items-center dark:bg-stone-800 border-2 border-gray-300 dark:border-stone-500 dark:text-gray-300 rounded-r-lg px-2 h-10 hover:bg-gray-300 dark:hover:bg-stone-700"
       >
         <AiOutlineEnter size={25} color="#777" />
       </button>

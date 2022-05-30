@@ -7,7 +7,9 @@ enum NavbarItemName {
   SEARCH = 'Search',
   FOR_YOU = 'For you',
   FICTION = 'Fiction',
+  NONFICTION = 'Nonfiction',
   POETRY = 'Poetry',
+  PHILOSOPHY = 'Philosophy',
   FANTASY = 'Fantasy',
   ROMANCE = 'Romance',
   MORE = 'More'
@@ -32,27 +34,35 @@ const Navbar = () => {
         </div>
         <div>
           <p className="px-5 mt-10 mb-5 text-gray-400">LIBRARY</p>
-          <NavbarItem
-            to="/category/fiction"
+          <NavbarItem to="/favorites" emoji="❤️" name="Favorites" />
+          <NavbarItem to="/to-read" emoji="📖" name="To read" />
+          {/* <NavbarItem
+            to="/explore/fiction"
             emoji="👽"
             name={NavbarItemName.FICTION}
           />
           <NavbarItem
-            to="/category/poetry"
-            emoji="🌈"
-            name={NavbarItemName.POETRY}
+            to="/explore/nonfiction"
+            emoji="🧠"
+            name={NavbarItemName.NONFICTION}
+          />
+          <NavbarItem to="/explore/poetry" emoji="🌈" name={NavbarItemName.POETRY} />
+          <NavbarItem
+            to="/explore/philosophy"
+            emoji="💡"
+            name={NavbarItemName.PHILOSOPHY}
           />
           <NavbarItem
-            to="/category/fantasy"
+            to="/explore/fantasy"
             emoji="🌺"
             name={NavbarItemName.FANTASY}
           />
           <NavbarItem
-            to="/category/romance"
+            to="/explore/romance"
             emoji="💕"
             name={NavbarItemName.ROMANCE}
-          />
-          <NavbarItem to="/category/more" emoji="✨" name={NavbarItemName.MORE} />
+          /> */}
+          <NavbarItem to="/explore/more" emoji="✨" name={NavbarItemName.MORE} />
         </div>
       </div>
       <div className="flex items-center mx-auto">

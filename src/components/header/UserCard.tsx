@@ -21,13 +21,13 @@ const UserCard = ({ isLoggedIn }: Props) => {
         <div className="flex">
           <Link
             to="/login"
-            className="rounded-2xl border-2 border-violet-500 dark:border-violet-400 p-3 shadow-xl hover:bg-violet-500 dark:hover:bg-violet-400 hover:text-white dark:hover:text-black hover:shadow-md duration-200"
+            className="flex border-2 border-violet-500 dark:border-violet-300 dark:text-white rounded-3xl py-3 px-8 cursor-pointer hover:bg-violet-500 dark:hover:bg-violet-300 hover:text-white dark:hover:text-black hover:shadow-md duration-200"
           >
             Login
           </Link>
           <Link
             to="/signup"
-            className="rounded-2xl border-2 border-violet-500 dark:border-violet-400 ml-3 p-3 bg-violet-500 dark:bg-violet-400 shadow-xl hover:bg-violet-600 dark:hover:bg-violet-500 hover:border-violet-600 dark:hover:border-violet-500 text-white dark:text-black hover:shadow-md duration-200"
+            className="flex border-2 border-violet-500 dark:border-violet-300 bg-violet-500 dark:bg-violet-300 rounded-3xl py-3 px-8 ml-3 cursor-pointer hover:bg-violet-600 dark:hover:bg-violet-500 hover:border-violet-600 dark:hover:border-violet-500  text-white dark:text-black hover:text-white dark:hover:text-black hover:shadow-md duration-200"
           >
             Sign Up
           </Link>

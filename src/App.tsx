@@ -3,10 +3,10 @@ import useDarkMode from './hooks/useDarkMode';
 import './index.css';
 
 import Layout from './layout/Layout';
-import LoginPage from './pages/LoginPage';
+import LoginPage from './pages/auth/LoginPage';
 import MainPage from './pages/MainPage';
 import SearchPage from './pages/SearchPage';
-import SignupPage from './pages/SignupPage';
+import SignupPage from './pages/auth/SignupPage';
 
 function App() {
   useDarkMode();

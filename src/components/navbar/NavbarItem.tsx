@@ -13,7 +13,7 @@ const NavbarItem = ({ to, name, emoji }: Props) => {
       className={navData =>
         `${
           navData.isActive
-            ? 'bg-violet-500 dark:bg-violet-400 text-white dark:text-black shadow-xl'
+            ? 'bg-violet-500 dark:bg-violet-300 text-white dark:text-black shadow-xl'
             : ''
         } flex dark:text-white rounded-3xl my-5 py-3 px-8 cursor-pointer hover:shadow-md ease duration-200`
       }
