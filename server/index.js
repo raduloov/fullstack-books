@@ -1,31 +1,54 @@
-// const express = require('express');
-// const bodyParser = require('body-parser');
-
-// const app = express();
-
-// app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   res.setHeader(
-//     'Access-Control-Allow-Headers',
-//     'Origin, Content-Type, Accept, Authorization'
-//   );
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
-//   next();
-// });
-
-// app.use(bodyParser.json());
-
-// app.listen(8080);
-
-const { ApolloServer } = require('apollo-server-express');
 const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const { graphqlHTTP } = require('express-graphql');
+
+const graphqlSchema = require('./graphql/schema');
+const graphqlResolver = require('./graphql/resolvers');
+const auth = require('./middleware/auth');
 
 const app = express();
 
-const server = new AppoloServer({ typeDefs, resolvers });
-
-server.applyMiddleware({ app });
-
-app.listen({ port: 8080 }, () => {
-  console.log('SERVER RUNNING ON PORT 8080');
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'Origin, Content-Type, Accept, Authorization'
+  );
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
+  next();
 });
+
+app.use(bodyParser.json());
+
+app.use(auth);
+
+app.use(
+  '/graphql',
+  graphqlHTTP({
+    schema: graphqlSchema,
+    rootValue: graphqlResolver,
+    graphiql: true,
+    formatError(err) {
+      if (!err.originalError) {
+        return err;
+      }
+
+      const data = err.originalError.data;
+      const message = err.message || 'An error occurred.';
+      const code = err.originalError.code || 500;
+
+      return { message: message, status: code, data: data };
+    }
+  })
+);
+
+mongoose
+  .connect(
+    'mongodb+srv://raduloov:JSxfUO7hqJw0fH88@cluster0.yejom.mongodb.net/?retryWrites=true&w=majority'
+  )
+  .then(result => {
+    app.listen(8080);
+    console.log('SERVER STARTED AT PORT 8080');
+  })
+  .catch(err => console.log(err));

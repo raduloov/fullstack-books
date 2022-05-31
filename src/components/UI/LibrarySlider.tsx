@@ -79,7 +79,7 @@ const LibrarySlider = ({ name }: Props) => {
       </div>
       <div
         ref={sliderRef}
-        className="flex overflow-x-scroll whitespace-nowrap pb-5 h-60"
+        className="flex overflow-x-scroll whitespace-nowrap pb-5 h-65"
       >
         <div className="h-60 w-8 z-10 bg-gradient-to-r from-white to-transparent absolute dark:from-stone-800" />
         {!isLoading && data ? (

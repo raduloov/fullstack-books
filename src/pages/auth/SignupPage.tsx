@@ -1,6 +1,25 @@
 import { Link } from 'react-router-dom';
 
+type AuthData = { email: string; password: string };
+
 const SignupPage = () => {
+  const signupHandler = async (authData: AuthData) => {
+    const graphqlQuery = {
+      query: `
+        query UserLogin($email: String!, $password: String!) {
+          login(email: $email, password: $password) {
+            token
+            userId
+          }
+        }
+      `,
+      variables: {
+        email: authData.email,
+        password: authData.password
+      }
+    };
+  };
+
   return (
     <div className="w-1/3 mx-auto dark:text-white">
       <div className="mb-10">

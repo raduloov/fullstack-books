@@ -14,7 +14,7 @@ const BookSliderCard = ({ title, imageUrl, author, category, url }: Props) => {
   const backgroundGradient = `linear-gradient(180deg, ${getRandomColor()} 0%, transparent 100%)`;
 
   return (
-    <div className="relative mr-2.5 ml-2.5">
+    <div className="relative mx-2.5">
       <img
         onClick={() => window.open(url, '_blank')}
         className="rounded-md shadow-md h-44 w-28 absolute left-5 bottom-5 cursor-pointer hover:shadow-lg hover:scale-110 duration-200"
