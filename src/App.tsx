@@ -14,8 +14,8 @@ function App() {
 
   return (
     <BrowserRouter>
+      <CheckAuth />
       <Layout>
-        <CheckAuth />
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/login" element={<LoginPage />} />

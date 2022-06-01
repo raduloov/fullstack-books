@@ -7,7 +7,6 @@ import { GRAPHQL_URL } from '../apis/graphql';
 import { LoginAuthData, SignUpAuthData } from './../@types/types';
 
 const useAuth = () => {
-  // const [isAuth, setIsAuth] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -57,6 +56,9 @@ const useAuth = () => {
     };
 
     try {
+      setError(null);
+      setIsLoading(true);
+
       const response = await fetch(GRAPHQL_URL, {
         method: 'POST',
         headers: {
@@ -67,7 +69,7 @@ const useAuth = () => {
       const data = await response.json();
 
       if (data.errors) {
-        throw new Error(`User login failed!`);
+        throw new Error(data.errors[0].message);
       }
 
       localStorage.setItem('token', data.data.login.token);
@@ -79,7 +81,6 @@ const useAuth = () => {
       return navigate('/');
     } catch (err: any) {
       setError(err.message);
-      throw err;
     } finally {
       setIsLoading(false);
     }
@@ -107,6 +108,7 @@ const useAuth = () => {
     };
 
     try {
+      setError(null);
       setIsLoading(true);
 
       const response = await fetch(GRAPHQL_URL, {
@@ -118,28 +120,30 @@ const useAuth = () => {
       });
       const data = await response.json();
 
-      if (data.errors && data.errors[0].status === 422) {
-        throw new Error(
-          "Validation failed. Make sure the email address isn't used yet!"
-        );
-      }
       if (data.errors) {
-        throw new Error('User creation failed!');
+        throw new Error(data.errors[0].message);
       }
 
       return navigate('/');
     } catch (err: any) {
       setError(err.message);
-      throw err;
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const signOut = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('expiryDate');
+    localStorage.removeItem('userId');
+    dispatch(authActions.setIsAuth(false));
   };
 
   return {
     checkIsAuth,
     signIn,
     signUp,
+    signOut,
     isLoading,
     error
   };

@@ -1,29 +1,42 @@
 import { FormEvent, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { LoginAuthData } from '../../@types/types';
 import ActivityIndicator from '../../components/UI/ActivityIndicator';
 import useAuth from '../../hooks/useAuth';
+import useDarkMode from '../../hooks/useDarkMode';
+import { useAppSelector } from '../../hooks/useRedux';
 
 const LoginPage = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const { signIn, error } = useAuth();
+  const { isAuth } = useAppSelector(state => state.auth);
+
+  const { signIn, error, isLoading } = useAuth();
+
+  const { darkMode } = useDarkMode();
 
   const loginHandler = async (event: FormEvent, authData: LoginAuthData) => {
     event.preventDefault();
 
-    try {
-      setIsLoading(true);
-      await signIn(authData);
-    } finally {
-      setIsLoading(false);
-    }
+    await signIn(authData);
   };
+
+  if (isAuth) {
+    return <Navigate to="/" />;
+  }
+
+  if (error) {
+    toast.error(error);
+  }
 
   return (
     <div className="w-1/3 mx-auto dark:text-white">
+      <ToastContainer theme={darkMode ? 'dark' : 'light'} />
+
       <div className="mb-10">
         <h2 className="text-4xl font-bold mb-2">Login</h2>
         <p>Find your next favorite book!</p>

@@ -1,22 +1,33 @@
 import { Link } from 'react-router-dom';
 
+import useDarkMode from '../../hooks/useDarkMode';
+import UserDropdown from '../UI/UserDropdown';
+
 interface Props {
   isAuth: boolean;
 }
 
 const UserCard = ({ isAuth }: Props) => {
+  const { darkMode } = useDarkMode();
+
   return (
     <div className="flex items-center">
       {isAuth ? (
-        <>
-          <div className="rounded-full h-[56px] w-[56px] bg-black mr-6">
-            {/* <img src="" alt="" /> */}
-          </div>
+        <div className="flex items-center">
           <div className="flex flex-col">
-            <p className="text-violet-500 text-xl font-semibold">Yavor Radulov</p>
-            <p className="text-gray-600">raduloov@gmail.com</p>
+            <p
+              className={`${
+                darkMode ? 'text-violet-300' : 'text-violet-500'
+              } text-xl font-semibold`}
+            >
+              Yavor Radulov
+            </p>
+            <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+              raduloov@gmail.com
+            </p>
           </div>
-        </>
+          <UserDropdown />
+        </div>
       ) : (
         <div className="flex">
           <Link
