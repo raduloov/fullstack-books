@@ -6,7 +6,7 @@ import { BASE_URL } from '../../apis/googleBooks';
 import ShowMoreButton from './ShowMoreButton';
 import getSliderPosition, { SliderPositions } from '../../utils/getSliderPosition';
 import ActivityIndicator from './ActivityIndicator';
-import COLORS from '../../colors';
+import COLORS from '../../utils/colors';
 
 const MAX_ALLOWED_BOOKS_ON_PAGE = 5;
 const MAX_ALLOWED_START_INDEX = 155;
@@ -79,7 +79,7 @@ const LibrarySlider = ({ name }: Props) => {
       </div>
       <div
         ref={sliderRef}
-        className="flex overflow-x-scroll whitespace-nowrap pb-5 h-65"
+        className="flex overflow-x-scroll whitespace-nowrap pb-5 h-64"
       >
         <div className="h-60 w-8 z-10 bg-gradient-to-r from-white to-transparent absolute dark:from-stone-800" />
         {!isLoading && data ? (

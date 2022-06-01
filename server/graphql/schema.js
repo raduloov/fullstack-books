@@ -6,7 +6,7 @@ module.exports = buildSchema(`
         title: String!
         author: String!
         imageUrl: String!
-        genre: User!
+        genre: String!
     }
 
     type User {

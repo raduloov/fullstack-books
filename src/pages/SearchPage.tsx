@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { BASE_URL } from '../apis/googleBooks';
-import COLORS from '../colors';
+import COLORS from '../utils/colors';
 import ActivityIndicator from '../components/UI/ActivityIndicator';
 import BookSliderCard from '../components/UI/BookSliderCard';
 import { useAppSelector } from '../hooks/useRedux';

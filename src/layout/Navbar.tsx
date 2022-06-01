@@ -1,6 +1,6 @@
 import NavbarItem from '../components/navbar/NavbarItem';
 import Switch from 'react-switch';
-import COLORS from '../colors';
+import COLORS from '../utils/colors';
 import useDarkMode from '../hooks/useDarkMode';
 
 enum NavbarItemName {

@@ -4,7 +4,7 @@ import { FaChevronDown, FaSignOutAlt } from 'react-icons/fa';
 
 import useDarkMode from '../../hooks/useDarkMode';
 import useAuth from '../../hooks/useAuth';
-import COLORS from '../../colors';
+import COLORS from '../../utils/colors';
 
 const UserDropdown = () => {
   const { darkMode } = useDarkMode();

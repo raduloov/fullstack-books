@@ -1,14 +1,30 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import useDarkMode from '../../hooks/useDarkMode';
+import userService from '../../service/userService';
 import UserDropdown from '../UI/UserDropdown';
 
 interface Props {
   isAuth: boolean;
 }
 
+type UserData = { name: string; email: string; favoriteBooks: any[] };
+
 const UserCard = ({ isAuth }: Props) => {
+  const [userData, setUserData] = useState<UserData | null>(null);
   const { darkMode } = useDarkMode();
+
+  useEffect(() => {
+    const getUserData = async () => {
+      if (isAuth) {
+        const { user } = await userService.getUserData();
+        setUserData(user);
+      }
+    };
+
+    getUserData();
+  }, [isAuth]);
 
   return (
     <div className="flex items-center">
@@ -20,10 +36,10 @@ const UserCard = ({ isAuth }: Props) => {
                 darkMode ? 'text-violet-300' : 'text-violet-500'
               } text-xl font-semibold`}
             >
-              Yavor Radulov
+              {userData?.name}
             </p>
             <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-              raduloov@gmail.com
+              {userData?.email}
             </p>
           </div>
           <UserDropdown />
