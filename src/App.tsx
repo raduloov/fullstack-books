@@ -6,7 +6,8 @@ import Layout from './layout/Layout';
 import LoginPage from './pages/auth/LoginPage';
 import MainPage from './pages/MainPage';
 import SearchPage from './pages/SearchPage';
-import SignupPage from './pages/auth/SignupPage';
+import SignUpPage from './pages/auth/SignupPage';
+import CheckAuth from './auth/CheckAuth';
 
 function App() {
   useDarkMode();
@@ -14,10 +15,11 @@ function App() {
   return (
     <BrowserRouter>
       <Layout>
+        <CheckAuth />
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
           <Route path="/search" element={<SearchPage />} />
         </Routes>
       </Layout>

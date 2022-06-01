@@ -1,71 +1,27 @@
 import { FormEvent, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { SignUpAuthData } from '../../@types/types';
 
-import { GRAPHQL_URL } from '../../apis/graphql';
+import ActivityIndicator from '../../components/UI/ActivityIndicator';
+import useAuth from '../../hooks/useAuth';
 
-type AuthData = {
-  email: string;
-  name: string;
-  password: string;
-  confirmPassword: string;
-};
-
-const SignupPage = () => {
+const SignUpPage = () => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
-  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const navigate = useNavigate();
+  const { signUp, error } = useAuth();
 
-  const signupHandler = async (event: FormEvent, authData: AuthData) => {
+  const signUpHandler = async (event: FormEvent, authData: SignUpAuthData) => {
     event.preventDefault();
 
-    if (authData.password !== authData.confirmPassword) {
-      return setError('Passwords do not match.');
-    }
-
-    const graphqlQuery = {
-      query: `
-        mutation CreateNewUser($email: String!, $name: String!, $password: String!) {
-          createUser(userInput: {email: $email, name: $name, password: $password}) {
-            _id
-            email
-          }
-        }
-      `,
-      variables: {
-        email: authData.email,
-        name: authData.name,
-        password: authData.password
-      }
-    };
-
     try {
-      const response = await fetch(GRAPHQL_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(graphqlQuery)
-      });
-      const data = await response.json();
-
-      console.log(data);
-
-      if (data.errors && data.errors[0].status === 422) {
-        throw new Error(
-          "Validation failed. Make sure the email address isn't used yet!"
-        );
-      }
-      if (data.errors) {
-        throw new Error('User creation failed!');
-      }
-
-      return navigate('/');
-    } catch (err) {
-      throw err;
+      setIsLoading(true);
+      await signUp(authData);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -78,7 +34,7 @@ const SignupPage = () => {
 
       <form
         onSubmit={event =>
-          signupHandler(event, {
+          signUpHandler(event, {
             name,
             email,
             password,
@@ -140,9 +96,13 @@ const SignupPage = () => {
 
         <button
           type="submit"
-          className="mt-10 rounded-xl border-2 border-violet-500 dark:border-violet-300 block w-full px-3 py-2 shadow-xl hover:bg-violet-500 dark:hover:bg-violet-300 hover:text-white dark:hover:text-black hover:shadow-md duration-200"
+          className="mt-10 rounded-xl border-2 border-violet-500 dark:border-violet-300 block w-full px-3 h-12 shadow-xl hover:bg-violet-500 dark:hover:bg-violet-300 hover:text-white dark:hover:text-black hover:shadow-md duration-200"
         >
-          Create account
+          {isLoading ? (
+            <ActivityIndicator color="#fff" size={40} />
+          ) : (
+            'Create account'
+          )}
         </button>
         <p className="mt-5">
           Already have an account?{' '}
@@ -155,4 +115,4 @@ const SignupPage = () => {
   );
 };
 
-export default SignupPage;
+export default SignUpPage;

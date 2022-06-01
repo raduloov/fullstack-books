@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 
 interface Props {
-  isLoggedIn: boolean;
+  isAuth: boolean;
 }
 
-const UserCard = ({ isLoggedIn }: Props) => {
+const UserCard = ({ isAuth }: Props) => {
   return (
     <div className="flex items-center">
-      {isLoggedIn ? (
+      {isAuth ? (
         <>
           <div className="rounded-full h-[56px] w-[56px] bg-black mr-6">
             {/* <img src="" alt="" /> */}
