@@ -1,10 +1,12 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
+
 import { BASE_URL } from '../apis/googleBooks';
 import COLORS from '../utils/colors';
 import ActivityIndicator from '../components/UI/ActivityIndicator';
 import BookSliderCard from '../components/UI/BookSliderCard';
 import { useAppSelector } from '../hooks/useRedux';
+import getRandomColor from '../utils/getRandomColor';
 
 const MAX_ALLOWED_BOOKS = 40;
 
@@ -44,6 +46,8 @@ const SearchPage = () => {
         books.length > 0 &&
         books.map((book: any, index: number) => (
           <BookSliderCard
+            backgroundColor={getRandomColor()}
+            id={book.id}
             title={book.volumeInfo.title}
             imageUrl={book.volumeInfo.imageLinks?.thumbnail}
             author={book.volumeInfo.authors && book.volumeInfo.authors[0]}

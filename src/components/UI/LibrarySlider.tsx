@@ -7,6 +7,7 @@ import ShowMoreButton from './ShowMoreButton';
 import getSliderPosition, { SliderPositions } from '../../utils/getSliderPosition';
 import ActivityIndicator from './ActivityIndicator';
 import COLORS from '../../utils/colors';
+import getRandomColor from '../../utils/getRandomColor';
 
 const MAX_ALLOWED_BOOKS_ON_PAGE = 5;
 const MAX_ALLOWED_START_INDEX = 155;
@@ -87,6 +88,8 @@ const LibrarySlider = ({ name }: Props) => {
             <div ref={sliderStartRef} />
             {data.items.map((book: any, index: number) => (
               <BookSliderCard
+                backgroundColor={getRandomColor()}
+                id={book.id}
                 title={book.volumeInfo.title}
                 imageUrl={book.volumeInfo.imageLinks?.thumbnail}
                 author={book.volumeInfo.authors && book.volumeInfo.authors[0]}

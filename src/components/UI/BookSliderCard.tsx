@@ -1,17 +1,49 @@
+import { useState } from 'react';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 
-import getRandomColor from '../../utils/getRandomColor';
+import { BookData, BookSliderCardProps } from '../../@types/types';
+import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
+import { favoritesActions } from '../../store/favoritesSlice';
 
-interface Props {
-  title: string;
-  imageUrl: string;
-  author: string;
-  category: string;
-  url: string;
-}
+const BookSliderCard = ({
+  backgroundColor,
+  id,
+  title,
+  imageUrl,
+  author,
+  category,
+  url
+}: BookSliderCardProps) => {
+  const { favorites } = useAppSelector(state => state.favorites);
+  const [isFavorite, setIsFavorite] = useState<boolean>(
+    !!favorites.find((book: BookData) => book.id === id)
+  );
 
-const BookSliderCard = ({ title, imageUrl, author, category, url }: Props) => {
-  const backgroundGradient = `linear-gradient(180deg, ${getRandomColor()} 0%, transparent 100%)`;
+  const dispatch = useAppDispatch();
+
+  const favoriteHandler = async () => {
+    if (!isFavorite) {
+      dispatch(
+        favoritesActions.addToFavorites({
+          id,
+          title,
+          imageUrl,
+          author,
+          category,
+          url
+        })
+      );
+      setIsFavorite(true);
+      toast(`${title} added to your favorites!`, { icon: '❤️' });
+    } else {
+      dispatch(favoritesActions.removeFromFavorites(id));
+      setIsFavorite(false);
+      toast(`${title} removed from your favorites!`, { icon: '💔' });
+    }
+  };
+
+  const backgroundGradient = `linear-gradient(180deg, ${backgroundColor} 0%, transparent 100%)`;
 
   return (
     <div className="relative mx-2.5">
@@ -34,12 +66,20 @@ const BookSliderCard = ({ title, imageUrl, author, category, url }: Props) => {
             {category && <p className="text-gray-600">{category}</p>}
           </div>
         </div>
-        <div className="ml-5">
-          <FaRegHeart
-            size={30}
-            color="#ff0000"
-            className="hover:scale-105 cursor-pointer"
-          />
+        <div className="ml-5" onClick={favoriteHandler}>
+          {!isFavorite ? (
+            <FaRegHeart
+              size={30}
+              color="#ff0000"
+              className="hover:scale-105 cursor-pointer"
+            />
+          ) : (
+            <FaHeart
+              size={30}
+              color="#ff0000"
+              className="hover:scale-105 cursor-pointer"
+            />
+          )}
         </div>
       </div>
     </div>

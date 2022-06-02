@@ -1,21 +1,18 @@
 import { FormEvent, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { SignUpAuthData } from '../../@types/types';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import ActivityIndicator from '../../components/UI/ActivityIndicator';
 import useAuth from '../../hooks/useAuth';
 import { useAppSelector } from '../../hooks/useRedux';
-import useDarkMode from '../../hooks/useDarkMode';
 
 const SignUpPage = () => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
-
-  const { darkMode } = useDarkMode();
 
   const { isAuth } = useAppSelector(state => state.auth);
 
@@ -37,8 +34,6 @@ const SignUpPage = () => {
 
   return (
     <div className="w-1/3 mx-auto dark:text-white">
-      <ToastContainer theme={darkMode ? 'dark' : 'light'} />
-
       <div className="mb-10">
         <h2 className="text-4xl font-bold mb-2">Create an account</h2>
         <p>Find your next favorite book!</p>

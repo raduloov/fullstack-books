@@ -10,11 +10,12 @@ const getUserData = async () => {
           name
           email
           favoriteBooks {
-            _id
+            id
             title
             author
             imageUrl
-            genre
+            category
+            url
           }
         }
       }

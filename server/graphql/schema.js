@@ -2,11 +2,12 @@ const { buildSchema } = require('graphql');
 
 module.exports = buildSchema(`
     type Book {
-        _id: ID!
+        id: ID!
         title: String!
         author: String!
         imageUrl: String!
-        genre: String!
+        category: String!
+        url: String!
     }
 
     type User {
@@ -29,9 +30,12 @@ module.exports = buildSchema(`
     }
 
     input BookData {
+        id: ID!
         title: String!
-        content: String!
+        author: String!
         imageUrl: String!
+        category: String!
+        url: String!
     }
 
     type RootQuery {

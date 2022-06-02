@@ -30,7 +30,7 @@ const UserCard = ({ isAuth }: Props) => {
     <div className="flex items-center">
       {isAuth ? (
         <div className="flex items-center">
-          <div className="flex flex-col">
+          <div className="flex flex-col mr-3">
             <p
               className={`${
                 darkMode ? 'text-violet-300' : 'text-violet-500'

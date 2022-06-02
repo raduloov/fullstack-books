@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import './index.css';
 
 import Layout from './layout/Layout';
@@ -10,11 +11,12 @@ import useDarkMode from './hooks/useDarkMode';
 import CheckAuth from './auth/CheckAuth';
 
 function App() {
-  useDarkMode();
+  const { darkMode } = useDarkMode();
 
   return (
     <BrowserRouter>
       <CheckAuth />
+      <ToastContainer theme={darkMode ? 'dark' : 'light'} />
       <Layout>
         <Routes>
           <Route path="/" element={<MainPage />} />
