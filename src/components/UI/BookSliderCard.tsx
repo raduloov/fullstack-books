@@ -4,8 +4,7 @@ import { toast } from 'react-toastify';
 
 import { BookData, BookSliderCardProps } from '../../@types/types';
 import useBooks from '../../hooks/useBooks';
-import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
-import { favoritesActions } from '../../store/favoritesSlice';
+import { useAppSelector } from '../../hooks/useRedux';
 
 const BookSliderCard = ({
   backgroundColor,
@@ -20,25 +19,28 @@ const BookSliderCard = ({
   const [isFavorite, setIsFavorite] = useState<boolean>(
     !!favorites.find((book: BookData) => book.id === id)
   );
+  const { isAuth } = useAppSelector(state => state.auth);
 
   const { addToFavorites, removeFromFavorites } = useBooks();
 
   const favoriteHandler = async () => {
-    if (!isFavorite) {
-      addToFavorites({
-        id,
-        title,
-        imageUrl,
-        author,
-        category,
-        url
-      });
-      setIsFavorite(true);
-      toast(`${title} added to your favorites!`, { icon: '❤️' });
+    if (isAuth) {
+      if (!isFavorite) {
+        addToFavorites({
+          id,
+          title,
+          imageUrl,
+          author,
+          category,
+          url
+        });
+        setIsFavorite(true);
+      } else {
+        removeFromFavorites(id, title);
+        setIsFavorite(false);
+      }
     } else {
-      removeFromFavorites(id);
-      setIsFavorite(false);
-      toast(`${title} removed from your favorites!`, { icon: '💔' });
+      toast.error('Please log in to add a book to your favorites.');
     }
   };
 

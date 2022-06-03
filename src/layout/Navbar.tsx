@@ -1,21 +1,21 @@
-import NavbarItem from '../components/navbar/NavbarItem';
 import Switch from 'react-switch';
+
+import NavbarItem from '../components/navbar/NavbarItem';
 import COLORS from '../utils/colors';
 import useDarkMode from '../hooks/useDarkMode';
+import UserCard from '../components/navbar/UserCard';
+
+interface Props {
+  isAuth: boolean;
+}
 
 enum NavbarItemName {
   SEARCH = 'Search',
   FOR_YOU = 'For you',
-  FICTION = 'Fiction',
-  NONFICTION = 'Nonfiction',
-  POETRY = 'Poetry',
-  PHILOSOPHY = 'Philosophy',
-  FANTASY = 'Fantasy',
-  ROMANCE = 'Romance',
   MORE = 'More'
 }
 
-const Navbar = () => {
+const Navbar = ({ isAuth }: Props) => {
   const { darkMode, toggle } = useDarkMode();
 
   return (
@@ -36,33 +36,12 @@ const Navbar = () => {
           <p className="px-5 mt-10 mb-5 text-gray-400">LIBRARY</p>
           <NavbarItem to="/favorites" emoji="❤️" name="Favorites" />
           <NavbarItem to="/to-read" emoji="📖" name="To read" />
-          {/* <NavbarItem
-            to="/explore/fiction"
-            emoji="👽"
-            name={NavbarItemName.FICTION}
-          />
-          <NavbarItem
-            to="/explore/nonfiction"
-            emoji="🧠"
-            name={NavbarItemName.NONFICTION}
-          />
-          <NavbarItem to="/explore/poetry" emoji="🌈" name={NavbarItemName.POETRY} />
-          <NavbarItem
-            to="/explore/philosophy"
-            emoji="💡"
-            name={NavbarItemName.PHILOSOPHY}
-          />
-          <NavbarItem
-            to="/explore/fantasy"
-            emoji="🌺"
-            name={NavbarItemName.FANTASY}
-          />
-          <NavbarItem
-            to="/explore/romance"
-            emoji="💕"
-            name={NavbarItemName.ROMANCE}
-          /> */}
           <NavbarItem to="/explore/more" emoji="✨" name={NavbarItemName.MORE} />
+        </div>
+
+        <div>
+          <p className="px-5 mt-10 mb-5 text-gray-400">ACCOUNT</p>
+          <UserCard isAuth={isAuth} darkMode={darkMode} />
         </div>
       </div>
       <div className="flex items-center mx-auto">

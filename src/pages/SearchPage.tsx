@@ -41,7 +41,7 @@ const SearchPage = () => {
   }, [searchTerm]);
 
   return (
-    <div className="flex flex-wrap justify-center">
+    <div className="flex flex-wrap justify-evenly">
       {!isLoading &&
         books.length > 0 &&
         books.map((book: any, index: number) => (
@@ -51,7 +51,7 @@ const SearchPage = () => {
             title={book.volumeInfo.title}
             imageUrl={book.volumeInfo.imageLinks?.thumbnail}
             author={book.volumeInfo.authors && book.volumeInfo.authors[0]}
-            category={book.volumeInfo.categories}
+            category={book.volumeInfo.categories && book.volumeInfo.categories[0]}
             url={book.volumeInfo.infoLink}
             key={index}
           />

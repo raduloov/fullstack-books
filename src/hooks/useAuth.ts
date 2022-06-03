@@ -1,3 +1,4 @@
+import { favoritesActions } from './../store/favoritesSlice';
 import { authActions } from './../store/authSlice';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -19,13 +20,13 @@ const useAuth = () => {
     const expiryDate = localStorage.getItem('expiryDate');
 
     if (!token || !expiryDate) {
-      // signOut
+      signOut();
       dispatch(authActions.setIsAuth(false));
       return;
     }
 
     if (new Date(expiryDate) <= new Date()) {
-      // signOut
+      signOut();
       dispatch(authActions.setIsAuth(false));
       return;
     }
@@ -176,6 +177,7 @@ const useAuth = () => {
     localStorage.removeItem('expiryDate');
     localStorage.removeItem('userId');
     dispatch(authActions.setIsAuth(false));
+    dispatch(favoritesActions.setFavoriteBooks([]));
   };
 
   return {

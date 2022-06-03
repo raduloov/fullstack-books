@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import { GRAPHQL_URL } from './../apis/graphql';
 import { useAppDispatch } from './useRedux';
 import { BookData } from './../@types/types';
@@ -42,9 +43,10 @@ const useBooks = () => {
     });
 
     dispatch(favoritesActions.addToFavorites(bookData));
+    toast(`${bookData.title} added to your favorites!`, { icon: '❤️' });
   };
 
-  const removeFromFavorites = async (bookId: string) => {
+  const removeFromFavorites = async (bookId: string, bookTitle: string) => {
     const graphqlQuery = {
       query: `
         mutation RemoveBookFromFavorites($id: ID!) {
@@ -65,11 +67,44 @@ const useBooks = () => {
     });
 
     dispatch(favoritesActions.removeFromFavorites(bookId));
+    toast(`${bookTitle} removed from your favorites!`, {
+      icon: '💔'
+    });
+  };
+
+  const getFavoriteBooks = async () => {
+    const graphqlQuery = {
+      query: `
+        query GetFavoriteBooks {
+          favoriteBooks {
+            id
+            title
+            author
+            imageUrl
+            category
+            url
+          }
+        }
+      `
+    };
+
+    const response = await fetch(GRAPHQL_URL, {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(graphqlQuery)
+    });
+    const favoriteBooks = await response.json();
+
+    return favoriteBooks;
   };
 
   return {
     addToFavorites,
-    removeFromFavorites
+    removeFromFavorites,
+    getFavoriteBooks
   };
 };
 

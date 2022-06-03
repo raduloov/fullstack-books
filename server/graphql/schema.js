@@ -40,7 +40,7 @@ module.exports = buildSchema(`
 
     type RootQuery {
         login(email: String!, password: String!): AuthData!
-        favoriteBooks(userId: ID!): [Book!]
+        favoriteBooks: [Book!]
         book(id: ID!): Book!
         user: User!
     }

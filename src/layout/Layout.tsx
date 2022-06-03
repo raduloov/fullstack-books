@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 
 import Footer from '../components/footer/Footer';
 import SearchBar from '../components/header/SearchBar';
-import UserCard from '../components/header/UserCard';
 import useAuth from '../hooks/useAuth';
 import { useAppDispatch, useAppSelector } from '../hooks/useRedux';
 import { favoritesActions } from '../store/favoritesSlice';
@@ -31,11 +30,10 @@ const Layout = ({ children }: LayoutProps) => {
 
   return (
     <div className="dark:text-white">
-      <Navbar />
+      <Navbar isAuth={isAuth} />
       <main className="ml-[20%]">
-        <div className="flex justify-between items-center p-10">
+        <div className="p-10">
           <SearchBar />
-          <UserCard isAuth={isAuth} />
         </div>
         {children}
         <Footer />

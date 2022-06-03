@@ -20,10 +20,10 @@ const SearchBar = () => {
 
   return (
     <div className="flex items-center focus-within:outline-none focus-within:ring-violet-500 focus-within:border-violet-500 dark:focus-within:ring-violet-300 dark:focus-within:border-violet-300 duration-200">
-      <div className="flex items-center dark:bg-stone-800 border-2 border-gray-300 dark:border-stone-500 text-gray-900 dark:text-gray-300 rounded-l-xl h-10 px-3">
+      <div className="flex items-center w-[60vw] dark:bg-stone-800 border-2 border-gray-300 dark:border-stone-500 text-gray-900 dark:text-gray-300 rounded-l-xl h-10 px-3">
         <AiOutlineSearch size={25} color="#777" />
         <input
-          className="dark:bg-stone-800 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-gray-300 focus:outline-none w-[600px]"
+          className="w-full dark:bg-stone-800 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-gray-300 focus:outline-none"
           type="text"
           placeholder="Search for a book..."
           onChange={e => setSearchTerm(e.target.value)}
