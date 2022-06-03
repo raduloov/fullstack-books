@@ -8,9 +8,9 @@ const favoritesSlice = createSlice({
     favorites: []
   } as FavoritesState,
   reducers: {
-    // setFavoriteBooks(state, { payload }) {
-    //   state.favorites = payload;
-    // },
+    setFavoriteBooks(state, { payload }) {
+      state.favorites = payload;
+    },
     addToFavorites(state, { payload }) {
       const newBook = payload;
 

@@ -17,7 +17,7 @@ const userSchema = new Schema({
   },
   favoriteBooks: [
     {
-      type: Schema.Types.ObjectId,
+      type: Schema.Types.Mixed,
       ref: 'Book'
     }
   ]

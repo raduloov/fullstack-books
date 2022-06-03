@@ -15,8 +15,8 @@ function App() {
 
   return (
     <BrowserRouter>
-      <CheckAuth />
       <ToastContainer theme={darkMode ? 'dark' : 'light'} />
+      <CheckAuth />
       <Layout>
         <Routes>
           <Route path="/" element={<MainPage />} />

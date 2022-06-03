@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 import useDarkMode from '../../hooks/useDarkMode';
-import userService from '../../service/userService';
 import UserDropdown from '../UI/UserDropdown';
 
 interface Props {
@@ -14,16 +14,18 @@ type UserData = { name: string; email: string; favoriteBooks: any[] };
 const UserCard = ({ isAuth }: Props) => {
   const [userData, setUserData] = useState<UserData | null>(null);
   const { darkMode } = useDarkMode();
+  const { getUserData } = useAuth();
 
   useEffect(() => {
-    const getUserData = async () => {
+    const getData = async () => {
       if (isAuth) {
-        const { user } = await userService.getUserData();
+        const { user } = await getUserData();
         setUserData(user);
       }
     };
 
-    getUserData();
+    getData();
+    // eslint-disable-next-line
   }, [isAuth]);
 
   return (

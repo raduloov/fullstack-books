@@ -52,6 +52,6 @@ mongoose
   )
   .then(result => {
     app.listen(8080);
-    console.log('SERVER STARTED AT PORT 8080');
+    console.log('SERVER RUNNING AT PORT 8080');
   })
   .catch(err => console.log(err));

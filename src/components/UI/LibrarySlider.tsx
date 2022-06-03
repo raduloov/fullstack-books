@@ -93,7 +93,9 @@ const LibrarySlider = ({ name }: Props) => {
                 title={book.volumeInfo.title}
                 imageUrl={book.volumeInfo.imageLinks?.thumbnail}
                 author={book.volumeInfo.authors && book.volumeInfo.authors[0]}
-                category={book.volumeInfo.categories}
+                category={
+                  book.volumeInfo.categories && book.volumeInfo.categories[0]
+                }
                 url={book.volumeInfo.infoLink}
                 key={index}
               />

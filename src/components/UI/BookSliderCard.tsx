@@ -3,6 +3,7 @@ import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
 import { BookData, BookSliderCardProps } from '../../@types/types';
+import useBooks from '../../hooks/useBooks';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { favoritesActions } from '../../store/favoritesSlice';
 
@@ -20,24 +21,22 @@ const BookSliderCard = ({
     !!favorites.find((book: BookData) => book.id === id)
   );
 
-  const dispatch = useAppDispatch();
+  const { addToFavorites, removeFromFavorites } = useBooks();
 
   const favoriteHandler = async () => {
     if (!isFavorite) {
-      dispatch(
-        favoritesActions.addToFavorites({
-          id,
-          title,
-          imageUrl,
-          author,
-          category,
-          url
-        })
-      );
+      addToFavorites({
+        id,
+        title,
+        imageUrl,
+        author,
+        category,
+        url
+      });
       setIsFavorite(true);
       toast(`${title} added to your favorites!`, { icon: '❤️' });
     } else {
-      dispatch(favoritesActions.removeFromFavorites(id));
+      removeFromFavorites(id);
       setIsFavorite(false);
       toast(`${title} removed from your favorites!`, { icon: '💔' });
     }

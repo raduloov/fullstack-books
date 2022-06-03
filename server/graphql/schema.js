@@ -47,7 +47,7 @@ module.exports = buildSchema(`
 
     type RootMutation {
         createUser(userInput: UserInputData): User!
-        addToFavorites(bookData: BookData): Book!
+        addToFavorites(bookData: BookData): Book
         removeFromFavorites(id: ID!): Boolean
     }
 

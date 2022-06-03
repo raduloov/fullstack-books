@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import Footer from '../components/footer/Footer';
 
+import Footer from '../components/footer/Footer';
 import SearchBar from '../components/header/SearchBar';
 import UserCard from '../components/header/UserCard';
+import useAuth from '../hooks/useAuth';
 import { useAppDispatch, useAppSelector } from '../hooks/useRedux';
-import userService from '../service/userService';
 import { favoritesActions } from '../store/favoritesSlice';
 import Navbar from './Navbar';
 
@@ -16,16 +16,18 @@ const Layout = ({ children }: LayoutProps) => {
   const dispatch = useAppDispatch();
   const { isAuth } = useAppSelector(state => state.auth);
 
-  // useEffect(() => {
-  //   const getUserData = async () => {
-  //     if (isAuth) {
-  //       const { user } = await userService.getUserData();
-  //       dispatch(favoritesActions.setFavoriteBooks(user.books));
-  //     }
-  //   };
+  const { getUserData } = useAuth();
 
-  //   getUserData();
-  // }, [isAuth, dispatch]);
+  useEffect(() => {
+    const getUser = async () => {
+      if (isAuth) {
+        const { user } = await getUserData();
+        dispatch(favoritesActions.setFavoriteBooks(user.favoriteBooks));
+      }
+    };
+
+    getUser();
+  }, [isAuth, dispatch, getUserData]);
 
   return (
     <div className="dark:text-white">
