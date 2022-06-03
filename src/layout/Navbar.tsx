@@ -34,8 +34,13 @@ const Navbar = ({ isAuth }: Props) => {
         </div>
         <div>
           <p className="px-5 mt-10 mb-5 text-gray-400">LIBRARY</p>
-          <NavbarItem to="/favorites" emoji="❤️" name="Favorites" />
-          <NavbarItem to="/to-read" emoji="📖" name="To read" />
+          <NavbarItem
+            to="/favorites"
+            emoji="❤️"
+            name="Favorites"
+            isDisabled={!isAuth}
+          />
+          <NavbarItem to="/to-read" emoji="📖" name="To read" isDisabled={!isAuth} />
           <NavbarItem to="/explore/more" emoji="✨" name={NavbarItemName.MORE} />
         </div>
 

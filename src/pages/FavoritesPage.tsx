@@ -1,14 +1,18 @@
 import { useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
 
 import COLORS from '../utils/colors';
 import ActivityIndicator from '../components/UI/ActivityIndicator';
 import useBooks from '../hooks/useBooks';
 import { BookData } from '../@types/types';
 import FavoriteBookCard from '../components/UI/FavoriteBookCard';
+import { useAppSelector } from '../hooks/useRedux';
 
 const FavoritesPage = () => {
   const [favoriteBooks, setFavoriteBooks] = useState<BookData[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const { isAuth } = useAppSelector(state => state.auth);
 
   const { getFavoriteBooks, removeFromFavorites } = useBooks();
 
@@ -39,6 +43,10 @@ const FavoritesPage = () => {
     );
     setFavoriteBooks(updatedFavoriteBooks);
   };
+
+  if (!isAuth) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div>

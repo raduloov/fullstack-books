@@ -1,9 +1,7 @@
 import { FaGithub } from 'react-icons/fa';
 
-import useDarkMode from '../../hooks/useDarkMode';
-
 const Footer = () => {
-  const { darkMode } = useDarkMode();
+  const darkMode = localStorage.getItem('dark-mode');
 
   return (
     <div className="flex justify-center items-center py-10">
