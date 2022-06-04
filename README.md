@@ -4,7 +4,7 @@
 
 ## About
 
-Fullstack Books is my first attempt at building a fullstack MERN application. An online book library where you can browse books with the help of the ![Google Books API](https://developers.google.com/books/), create an account and save them to "Favorites" and "To Read" lists. The front-end is written in TypeScript and the server in JavaScript.
+Fullstack Books is my first attempt at building a fullstack MERN application. An online book library where you can browse books with the help of the [Google Books API](https://developers.google.com/books/), create an account and save them to "Favorites" and "To Read" lists. The front-end is written in TypeScript and the server in JavaScript.
 
 ## Tech Stack
 
