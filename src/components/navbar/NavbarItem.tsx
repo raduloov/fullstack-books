@@ -1,4 +1,6 @@
 import { NavLink } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks/useRedux';
+import { uiActions } from '../../store/uiSlice';
 
 interface Props {
   to: string;
@@ -8,6 +10,8 @@ interface Props {
 }
 
 const NavbarItem = ({ to, name, emoji, isDisabled }: Props) => {
+  const dispatch = useAppDispatch();
+
   const enabled = (navData: any) =>
     `${
       navData.isActive
@@ -17,8 +21,16 @@ const NavbarItem = ({ to, name, emoji, isDisabled }: Props) => {
   const disabled =
     'opacity-40 pointer-events-none flex dark:text-white rounded-3xl my-5 py-3 px-8 cursor-pointer hover:shadow-md ease duration-200';
 
+  const closeNavbar = () => {
+    dispatch(uiActions.toggleNavbar());
+  };
+
   return (
-    <NavLink to={to} className={isDisabled ? disabled : enabled}>
+    <NavLink
+      to={to}
+      onClick={closeNavbar}
+      className={isDisabled ? disabled : enabled}
+    >
       <p className="mr-4">{emoji}</p>
       <p>{name}</p>
     </NavLink>

@@ -1,31 +1,32 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { FaSignOutAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 import useAuth from '../../hooks/useAuth';
+import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
+import { authActions } from '../../store/authSlice';
 
 interface Props {
   isAuth: boolean;
-  darkMode: boolean;
 }
 
-type UserData = { name: string; email: string; favoriteBooks: any[] };
-
-const UserCard = ({ isAuth, darkMode }: Props) => {
-  const [userData, setUserData] = useState<UserData | null>(null);
+const UserCard = ({ isAuth }: Props) => {
   const { getUserData, signOut } = useAuth();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const getData = async () => {
       if (isAuth) {
         const { user } = await getUserData();
-        setUserData(user);
+        dispatch(authActions.setUser(user));
       }
     };
 
     getData();
     // eslint-disable-next-line
   }, [isAuth]);
+
+  const { username, email } = useAppSelector(state => state.auth);
 
   const signOutHandler = () => {
     signOut();
@@ -41,25 +42,15 @@ const UserCard = ({ isAuth, darkMode }: Props) => {
           <div className="mb-3">
             <div className="flex flex-col mr-3">
               <p>Logged in as</p>
-              <p
-                className={`${
-                  darkMode ? 'text-violet-300' : 'text-violet-500'
-                } text-xl font-semibold`}
-              >
-                {userData?.name}
+              <p className="text-xl text-violet-500 dark:text-violet-300 font-semibold">
+                {username}
               </p>
-              <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                {userData?.email}
-              </p>
+              <p className="text-gray-600 dark:text-gray-400">{email}</p>
             </div>
           </div>
           <div
             onClick={signOutHandler}
-            className={`flex items-center cursor-pointer ${
-              darkMode
-                ? 'text-violet-300 hover:text-white'
-                : 'text-violet-500 hover:text-black'
-            }`}
+            className="flex items-center cursor-pointer dark:text-violet-300 dark:hover:text-white text-violet-500 hover:text-black"
           >
             <FaSignOutAlt className="mr-2" />
             Sign out

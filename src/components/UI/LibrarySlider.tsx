@@ -61,7 +61,7 @@ const LibrarySlider = ({ name }: Props) => {
   };
 
   return (
-    <div className="py-8">
+    <div className="py-8 relative">
       <div className="flex justify-between items-center px-3">
         <h2 className="text-4xl font-bold dark:text-white">{name}</h2>
         <div className="flex mr-5">

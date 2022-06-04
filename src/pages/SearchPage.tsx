@@ -14,7 +14,7 @@ const SearchPage = () => {
   const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const { searchTerm } = useAppSelector(state => state.search);
+  const { searchTerm } = useAppSelector(state => state.ui);
 
   useEffect(() => {
     const setData = async () => {

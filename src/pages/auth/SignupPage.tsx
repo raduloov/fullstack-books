@@ -33,7 +33,7 @@ const SignUpPage = () => {
   }
 
   return (
-    <div className="w-1/3 mx-auto dark:text-white">
+    <div className="w-1/3 sm:w-full sm:px-2 mx-auto dark:text-white">
       <div className="mb-10">
         <h2 className="text-4xl font-bold mb-2">Create an account</h2>
         <p>Find your next favorite book!</p>

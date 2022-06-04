@@ -1,19 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const searchSlice = createSlice({
-  name: 'search',
+const uiSlice = createSlice({
+  name: 'ui',
   initialState: {
-    searchTerm: ''
+    searchTerm: '',
+    showNavbar: false
   },
   reducers: {
     setSearchTerm(state, { payload }) {
       const searchTerm = payload.replaceAll(' ', '+');
 
       state.searchTerm = searchTerm;
+    },
+    toggleNavbar(state) {
+      state.showNavbar = !state.showNavbar;
     }
   }
 });
 
-export const searchActions = searchSlice.actions;
+export const uiActions = uiSlice.actions;
 
-export default searchSlice;
+export default uiSlice;

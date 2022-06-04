@@ -50,12 +50,12 @@ const BookSliderCard = ({
     <div className="relative mx-2.5">
       <img
         onClick={() => window.open(url, '_blank')}
-        className="rounded-md shadow-md h-44 w-28 absolute left-5 bottom-5 cursor-pointer hover:shadow-lg hover:scale-110 duration-200"
+        className="rounded-md shadow-md h-44 w-28 absolute left-5 top-10 cursor-pointer hover:shadow-lg hover:scale-110 duration-200"
         src={imageUrl}
         alt="Book thumbnail"
       />
       <div
-        className="flex h-40 rounded-tl-3xl rounded-tr-3xl p-5 mt-20"
+        className="flex min-h-40 rounded-tl-3xl rounded-tr-3xl p-5 mt-20"
         style={{
           background: backgroundGradient
         }}

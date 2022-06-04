@@ -73,6 +73,9 @@ const useAuth = () => {
       });
       const { data } = await response.json();
 
+      // dispatch(authActions.setUser(data));
+      // dispatch(favoritesActions.setFavoriteBooks(data.favoriteBooks));
+
       return data;
     } catch (err) {
       console.log(err);

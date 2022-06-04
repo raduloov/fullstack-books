@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import searchSlice from './searchSlice';
+import uiSlice from './uiSlice';
 import authSlice from './authSlice';
 import favoritesSlice from './favoritesSlice';
 
 const store = configureStore({
   reducer: {
-    search: searchSlice.reducer,
+    ui: uiSlice.reducer,
     auth: authSlice.reducer,
     favorites: favoritesSlice.reducer
   }

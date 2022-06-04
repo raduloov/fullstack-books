@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AiOutlineEnter, AiOutlineSearch } from 'react-icons/ai';
 import { FiDelete } from 'react-icons/fi';
 
-import { searchActions } from '../../store/searchSlice';
+import { uiActions } from '../../store/uiSlice';
 import { useAppDispatch } from '../../hooks/useRedux';
 
 const SearchBar = () => {
@@ -13,7 +13,7 @@ const SearchBar = () => {
   const navigate = useNavigate();
 
   const searchHandler = async (searchTerm: string) => {
-    dispatch(searchActions.setSearchTerm(searchTerm));
+    dispatch(uiActions.setSearchTerm(searchTerm));
 
     return navigate('/search');
   };
