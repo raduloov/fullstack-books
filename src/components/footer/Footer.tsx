@@ -1,8 +1,6 @@
 import { FaGithub } from 'react-icons/fa';
 
 const Footer = () => {
-  const darkMode = localStorage.getItem('dark-mode');
-
   return (
     <div className="flex justify-center items-center py-10">
       <p className="mr-5">@2022 Yavor Radulov</p>
@@ -12,7 +10,7 @@ const Footer = () => {
         }
         className="cursor-pointer"
       >
-        <FaGithub size={30} color={darkMode ? '#fff' : '#000'} />
+        <FaGithub size={30} />
       </div>
     </div>
   );

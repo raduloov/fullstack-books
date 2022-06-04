@@ -9,7 +9,6 @@ const MainPage = () => {
       <LibrarySlider name="Philosophy" />
       <LibrarySlider name="Fantasy" />
       <LibrarySlider name="Romance" />
-      {/* <LibrarySlider name="More" /> */}
     </section>
   );
 };

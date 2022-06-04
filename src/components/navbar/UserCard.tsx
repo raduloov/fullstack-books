@@ -27,6 +27,13 @@ const UserCard = ({ isAuth, darkMode }: Props) => {
     // eslint-disable-next-line
   }, [isAuth]);
 
+  const signOutHandler = () => {
+    signOut();
+
+    // TODO: Find better solution
+    window.location.reload();
+  };
+
   return (
     <div className="flex items-center">
       {isAuth ? (
@@ -47,7 +54,7 @@ const UserCard = ({ isAuth, darkMode }: Props) => {
             </div>
           </div>
           <div
-            onClick={signOut}
+            onClick={signOutHandler}
             className={`flex items-center cursor-pointer ${
               darkMode
                 ? 'text-violet-300 hover:text-white'

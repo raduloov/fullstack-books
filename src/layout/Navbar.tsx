@@ -16,7 +16,7 @@ enum NavbarItemName {
 }
 
 const Navbar = ({ isAuth }: Props) => {
-  const { darkMode, toggle } = useDarkMode();
+  const { darkMode, toggleDarkMode } = useDarkMode();
 
   return (
     <div className="flex flex-col justify-between w-[20%] h-[100vh] px-[3%] py-10 fixed">
@@ -53,7 +53,7 @@ const Navbar = ({ isAuth }: Props) => {
         <p className="text-3xl">🌞</p>
         <Switch
           onChange={() => {
-            toggle();
+            toggleDarkMode();
           }}
           checked={darkMode}
           checkedIcon={false}
