@@ -4,7 +4,8 @@ const uiSlice = createSlice({
   name: 'ui',
   initialState: {
     searchTerm: '',
-    showNavbar: false
+    showNavbar: false,
+    screenSize: ''
   },
   reducers: {
     setSearchTerm(state, { payload }) {
@@ -14,6 +15,9 @@ const uiSlice = createSlice({
     },
     toggleNavbar(state) {
       state.showNavbar = !state.showNavbar;
+    },
+    setScreenSize(state, { payload }) {
+      state.screenSize = payload;
     }
   }
 });

@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import './index.css';
 
-import Layout from './layout/Layout';
+import Layout, { ScreenSizes } from './layout/Layout';
 import useDarkMode from './hooks/useDarkMode';
 import CheckAuth from './auth/CheckAuth';
 import LoginPage from './pages/auth/LoginPage';
@@ -10,17 +10,22 @@ import MainPage from './pages/MainPage';
 import SearchPage from './pages/SearchPage';
 import SignUpPage from './pages/auth/SignupPage';
 import FavoritesPage from './pages/FavoritesPage';
-import useWindowDimensions from './hooks/useWindowDimensions';
+import { useAppSelector } from './hooks/useRedux';
 
 function App() {
   useDarkMode();
 
-  const { width } = useWindowDimensions();
-  const smallScreen = width <= 1320;
+  const { screenSize } = useAppSelector(state => state.ui);
 
   return (
     <BrowserRouter>
-      <ToastContainer position={smallScreen ? 'bottom-center' : 'top-right'} />
+      <ToastContainer
+        position={
+          screenSize === ScreenSizes.SMALL
+            ? toast.POSITION.BOTTOM_CENTER
+            : toast.POSITION.TOP_RIGHT
+        }
+      />
       <CheckAuth />
       <Layout>
         <Routes>

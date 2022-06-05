@@ -46,12 +46,14 @@ app.use(
   })
 );
 
+const PORT = process.env.PORT || 8080;
+
 mongoose
   .connect(
     'mongodb+srv://raduloov:JSxfUO7hqJw0fH88@cluster0.yejom.mongodb.net/fullstackBooks?retryWrites=true&w=majority'
   )
   .then(result => {
-    app.listen(8080);
-    console.log('SERVER RUNNING AT PORT 8080');
+    app.listen(PORT);
+    console.log(`SERVER RUNNING AT PORT ${PORT}`);
   })
   .catch(err => console.log(err));

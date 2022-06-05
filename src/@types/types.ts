@@ -19,10 +19,6 @@ export type BookData = {
   url: string;
 };
 
-export interface BookSliderCardProps extends BookData {
-  backgroundColor: string;
-}
-
 export interface FavoriteBookCardProps extends BookData {
   removeFavorite: (bookId: string, bookTitle: string) => void;
 }

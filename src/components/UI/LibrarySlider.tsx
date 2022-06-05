@@ -7,7 +7,6 @@ import ShowMoreButton from './ShowMoreButton';
 import getSliderPosition, { SliderPositions } from '../../utils/getSliderPosition';
 import ActivityIndicator from './ActivityIndicator';
 import COLORS from '../../utils/colors';
-import getRandomColor from '../../utils/getRandomColor';
 
 const MAX_ALLOWED_BOOKS_ON_PAGE = 5;
 const MAX_ALLOWED_START_INDEX = 155;
@@ -63,7 +62,7 @@ const LibrarySlider = ({ name }: Props) => {
   return (
     <div className="py-8 relative">
       <div className="flex justify-between items-center px-3">
-        <h2 className="text-4xl font-bold dark:text-white">{name}</h2>
+        <h2 className="text-4xl sm:text-2xl font-bold dark:text-white">{name}</h2>
         <div className="flex mr-5">
           <ShowMoreButton
             direction={ButtonDirections.LEFT}
@@ -80,15 +79,14 @@ const LibrarySlider = ({ name }: Props) => {
       </div>
       <div
         ref={sliderRef}
-        className="flex overflow-x-scroll whitespace-nowrap pb-5 h-64"
+        className="flex overflow-x-scroll whitespace-nowrap h-64 sm:h-52"
       >
-        <div className="h-60 w-8 z-10 bg-gradient-to-r from-white to-transparent absolute dark:from-stone-800" />
+        <div className="h-60 sm:h-44 w-8 z-10 bg-gradient-to-r from-white to-transparent absolute dark:from-stone-800" />
         {!isLoading && data ? (
           <>
             <div ref={sliderStartRef} />
             {data.items.map((book: any, index: number) => (
               <BookSliderCard
-                backgroundColor={getRandomColor()}
                 id={book.id}
                 title={book.volumeInfo.title}
                 imageUrl={book.volumeInfo.imageLinks?.thumbnail}

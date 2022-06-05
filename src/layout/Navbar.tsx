@@ -19,7 +19,7 @@ const Navbar = ({ isAuth }: Props) => {
   const { darkMode, toggleDarkMode } = useDarkMode();
 
   return (
-    <div className="flex flex-col justify-between animate-[slide-right_0.3s_ease-in-out] dark:bg-stone-800 bg-white lg:w-1/5 h-[100vh] px-[3%] py-10 fixed z-50">
+    <div className="flex flex-col justify-between overflow-y-scroll animate-[slide-right_0.3s_ease-in-out] dark:bg-stone-800 bg-white lg:w-1/5 h-[100vh] px-[3%] py-10 fixed z-50">
       <div>
         <div className="text-3xl font-extrabold px-5">
           <p className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
@@ -49,20 +49,23 @@ const Navbar = ({ isAuth }: Props) => {
           <UserCard isAuth={isAuth} />
         </div>
       </div>
-      <div className="flex items-center mx-auto">
-        <p className="text-3xl">🌞</p>
-        <Switch
-          onChange={() => {
-            toggleDarkMode();
-          }}
-          checked={darkMode}
-          checkedIcon={false}
-          uncheckedIcon={false}
-          onColor={COLORS.ACCENT_COLOR_DARK_MODE}
-          offColor="#a8a29e"
-          className="mx-5"
-        />
-        <p className="text-3xl">🌚</p>
+      <div>
+        <p className="px-5 mt-10 mb-5 text-gray-400">THEME</p>
+        <div className="flex items-center">
+          <p className="text-3xl">🌞</p>
+          <Switch
+            onChange={() => {
+              toggleDarkMode();
+            }}
+            checked={darkMode}
+            checkedIcon={false}
+            uncheckedIcon={false}
+            onColor={COLORS.ACCENT_COLOR_DARK_MODE}
+            offColor="#a8a29e"
+            className="mx-5"
+          />
+          <p className="text-3xl">🌚</p>
+        </div>
       </div>
     </div>
   );

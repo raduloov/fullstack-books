@@ -15,15 +15,19 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
+export enum ScreenSizes {
+  SMALL = 'small',
+  LARGE = 'large'
+}
+
 const Layout = ({ children }: LayoutProps) => {
   const dispatch = useAppDispatch();
-  const { showNavbar } = useAppSelector(state => state.ui);
+  const { showNavbar, screenSize } = useAppSelector(state => state.ui);
   const { isAuth } = useAppSelector(state => state.auth);
 
   const { getUserData } = useAuth();
 
   const { width } = useWindowDimensions();
-  const smallScreen = width < 1320;
 
   useEffect(() => {
     const getUser = async () => {
@@ -32,9 +36,12 @@ const Layout = ({ children }: LayoutProps) => {
         dispatch(favoritesActions.setFavoriteBooks(user.favoriteBooks));
       }
     };
-
     getUser();
-  }, [isAuth, dispatch, getUserData]);
+
+    width < 1320
+      ? dispatch(uiActions.setScreenSize(ScreenSizes.SMALL))
+      : dispatch(uiActions.setScreenSize(ScreenSizes.LARGE));
+  }, [isAuth, dispatch, getUserData, width]);
 
   const toggleNavbar = () => {
     dispatch(uiActions.toggleNavbar());
@@ -42,11 +49,19 @@ const Layout = ({ children }: LayoutProps) => {
 
   return (
     <div className="dark:text-white">
-      {!smallScreen && <Navbar isAuth={isAuth} />}
-      {smallScreen && showNavbar && <Drawer toggleNavbar={toggleNavbar} />}
+      {screenSize !== ScreenSizes.SMALL && <Navbar isAuth={isAuth} />}
+      {screenSize === ScreenSizes.SMALL && showNavbar && (
+        <Drawer toggleNavbar={toggleNavbar} />
+      )}
       <main className="px-16 sm:px-2 lg:ml-[20%]">
         <div className="flex items-center justify-between py-10 sm:py-5 sm:px-2">
-          {smallScreen && <HiOutlineMenu onClick={toggleNavbar} size={25} />}
+          {screenSize === ScreenSizes.SMALL && (
+            <HiOutlineMenu
+              onClick={toggleNavbar}
+              size={25}
+              className="cursor-pointer"
+            />
+          )}
           <SearchBar />
         </div>
         {children}

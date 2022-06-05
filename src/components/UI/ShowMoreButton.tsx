@@ -17,9 +17,9 @@ const ShowMoreButton = ({ direction, disabled, onClick }: Props) => {
       } p-3 rounded-full shadow-xl duration-200`}
     >
       <FaPlay
-        className={`h-6 w-6 duration-200 ${direction === 'left' && 'rotate-180'} ${
-          disabled ? 'text-gray-300' : 'group-hover:text-white dark:text-black'
-        }`}
+        className={`h-6 w-6 sm:h-4 sm:w-4 duration-200 ${
+          direction === 'left' && 'rotate-180'
+        } ${disabled ? 'text-gray-300' : 'group-hover:text-white dark:text-black'}`}
       />
     </button>
   );
