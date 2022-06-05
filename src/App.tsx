@@ -10,13 +10,17 @@ import MainPage from './pages/MainPage';
 import SearchPage from './pages/SearchPage';
 import SignUpPage from './pages/auth/SignupPage';
 import FavoritesPage from './pages/FavoritesPage';
+import useWindowDimensions from './hooks/useWindowDimensions';
 
 function App() {
   useDarkMode();
 
+  const { width } = useWindowDimensions();
+  const smallScreen = width <= 1320;
+
   return (
     <BrowserRouter>
-      <ToastContainer />
+      <ToastContainer position={smallScreen ? 'bottom-center' : 'top-right'} />
       <CheckAuth />
       <Layout>
         <Routes>

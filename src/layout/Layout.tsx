@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 import Footer from '../components/footer/Footer';
 import SearchBar from '../components/header/SearchBar';
@@ -35,12 +35,6 @@ const Layout = ({ children }: LayoutProps) => {
 
     getUser();
   }, [isAuth, dispatch, getUserData]);
-
-  // useEffect(() => {
-  //   if (isAuth) {
-  //     setUserData();
-  //   }
-  // }, [isAuth, setUserData]);
 
   const toggleNavbar = () => {
     dispatch(uiActions.toggleNavbar());

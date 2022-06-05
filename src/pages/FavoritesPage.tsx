@@ -49,7 +49,7 @@ const FavoritesPage = () => {
   }
 
   return (
-    <div>
+    <div className="sm:px-2">
       <h2 className="text-4xl font-bold">Favorites</h2>
       <div className="flex flex-wrap justify-evenly">
         {!isLoading &&

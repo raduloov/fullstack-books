@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { authActions } from '../../store/authSlice';
+import { uiActions } from '../../store/uiSlice';
 
 interface Props {
   isAuth: boolean;
@@ -35,6 +36,10 @@ const UserCard = ({ isAuth }: Props) => {
     window.location.reload();
   };
 
+  const closeNavbar = () => {
+    dispatch(uiActions.toggleNavbar());
+  };
+
   return (
     <div className="flex items-center">
       {isAuth ? (
@@ -60,12 +65,14 @@ const UserCard = ({ isAuth }: Props) => {
         <div className="flex flex-col w-full mt-5">
           <Link
             to="/login"
+            onClick={closeNavbar}
             className="text-center border-2 border-violet-500 dark:border-violet-300 dark:text-white rounded-3xl py-1 cursor-pointer hover:bg-violet-500 dark:hover:bg-violet-300 hover:text-white dark:hover:text-black hover:shadow-md duration-200"
           >
             Login
           </Link>
           <Link
             to="/signup"
+            onClick={closeNavbar}
             className="text-center border-2 border-violet-500 dark:border-violet-300 bg-violet-500 dark:bg-violet-300 rounded-3xl py-1 mt-2 cursor-pointer hover:bg-violet-600 dark:hover:bg-violet-500 hover:border-violet-600 dark:hover:border-violet-500  text-white dark:text-black hover:text-white dark:hover:text-black hover:shadow-md duration-200"
           >
             Sign Up

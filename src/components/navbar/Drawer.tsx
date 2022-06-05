@@ -12,7 +12,7 @@ const Drawer = ({ toggleNavbar }: Props) => {
     <>
       <div
         onClick={toggleNavbar}
-        className="bg-[rgba(0,0,0,0.8)] w-screen h-screen z-20 fixed backdrop-blur-sm shadow-md animate-[blur-in_0.5s_ease]"
+        className="bg-[rgba(0,0,0,0.8)] w-screen h-screen animate-[blur-in_0.3s_ease-in-out] z-20 fixed backdrop-blur-sm shadow-md"
       ></div>
       <Navbar isAuth={isAuth} />
     </>

@@ -19,7 +19,7 @@ const Navbar = ({ isAuth }: Props) => {
   const { darkMode, toggleDarkMode } = useDarkMode();
 
   return (
-    <div className="flex flex-col justify-between animate-[slide-right_0.3s_ease-out] dark:bg-stone-800 bg-white lg:w-1/5 h-[100vh] px-[3%] py-10 fixed z-30">
+    <div className="flex flex-col justify-between animate-[slide-right_0.3s_ease-in-out] dark:bg-stone-800 bg-white lg:w-1/5 h-[100vh] px-[3%] py-10 fixed z-50">
       <div>
         <div className="text-3xl font-extrabold px-5">
           <p className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
