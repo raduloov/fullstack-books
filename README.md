@@ -25,11 +25,17 @@ Fullstack Books is my first attempt at building a fullstack MERN application. An
 
 <!-- ## Key Features -->
 
+## Live Demo
+
+### [Fullstack Books Live Demo](https://fullstack-books.vercel.app)
+
 ## Usage
 
-The app is not deployed as of now, if you would like to try it for yourself or contribute, follow these steps:
+This repository is split up into two projects - the frontend (client) and the backend (server).
+
+You can check out the [live demo](https://fullstack-books.vercel.app) or if you would like to play with the code or contribute, follow these steps:
 
 - Clone or download this repo
-- Run `yarn install` in the root of the project
-- Run `yarn start` to start the React front-end
-- Run `yarn server` to start the server (it is set to run on port 8080 by default)
+- Run `yarn install` in the `client` and `server` subdirectories of the project
+- Run `yarn start` in `client` to start the React front-end
+- Run `yarn start` in `server` to start the server (it is set to run on port 8080 by default)
