@@ -4,5 +4,25 @@
 
 body {
   font-family: 'Montserrat', sans-serif;
-  /* background-color: #000; */
+}
+
+/* Scrollbar */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #383838 #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.35);
+  border-radius: 10px;
 }
