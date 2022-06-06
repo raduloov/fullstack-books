@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const { graphqlHTTP } = require('express-graphql');
 const cors = require('cors');
+require('dotenv').config();
 
 const graphqlSchema = require('./graphql/schema');
 const graphqlResolver = require('./graphql/resolvers');
@@ -52,8 +53,7 @@ mongoose
   .connect(
     'mongodb+srv://raduloov:JSxfUO7hqJw0fH88@cluster0.yejom.mongodb.net/fullstackBooks?retryWrites=true&w=majority'
   )
-  .then(result => {
-    app.listen(PORT);
-    console.log(`SERVER RUNNING AT PORT ${PORT}`);
+  .then(() => {
+    app.listen(PORT, () => console.log(`SERVER RUNNING AT PORT ${PORT}`));
   })
   .catch(err => console.log(err));
