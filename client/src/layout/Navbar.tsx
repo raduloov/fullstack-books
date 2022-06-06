@@ -51,7 +51,7 @@ const Navbar = ({ isAuth }: Props) => {
       </div>
       <div>
         <p className="px-5 mt-10 mb-5 text-gray-400">THEME</p>
-        <div className="flex items-center">
+        <div className="flex items-center mb-20">
           <p className="text-3xl">🌞</p>
           <Switch
             onChange={() => {
