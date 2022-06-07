@@ -7,9 +7,12 @@ import ShowMoreButton from './ShowMoreButton';
 import getSliderPosition, { SliderPositions } from '../../utils/getSliderPosition';
 import ActivityIndicator from './ActivityIndicator';
 import COLORS from '../../utils/colors';
+import { useAppSelector } from '../../hooks/useRedux';
+import { ScreenSizes } from '../../layout/Layout';
 
 const MAX_ALLOWED_BOOKS_ON_PAGE = 5;
 const MAX_ALLOWED_START_INDEX = 155;
+const MOBILE_DEVICE_SCROLL = 500;
 
 export enum ButtonDirections {
   LEFT = 'left',
@@ -26,6 +29,8 @@ const LibrarySlider = ({ name }: Props) => {
   const sliderStartRef = useRef<HTMLDivElement | null>(null);
   const sliderEndRef = useRef<HTMLDivElement | null>(null);
 
+  const { screenSize } = useAppSelector(state => state.ui);
+
   const { data, isLoading } = useFetch(
     `${BASE_URL}?q=subject:${name}&startIndex=${startIndex}&maxResults=${MAX_ALLOWED_BOOKS_ON_PAGE}`
   );
@@ -33,14 +38,19 @@ const LibrarySlider = ({ name }: Props) => {
   const loadMore = (direction: string) => {
     const sliderPosition = getSliderPosition(sliderRef);
 
+    // TODO: Write a cleaner if-else logic
     if (direction === ButtonDirections.LEFT && startIndex !== 0) {
       if (sliderPosition === SliderPositions.START) {
         setStartIndex(prevState => prevState - MAX_ALLOWED_BOOKS_ON_PAGE);
       } else {
-        sliderStartRef.current?.scrollIntoView({
-          block: 'nearest',
-          behavior: 'smooth'
-        });
+        if (screenSize === ScreenSizes.MOBILE && sliderRef.current) {
+          sliderRef.current.scrollLeft -= MOBILE_DEVICE_SCROLL;
+        } else {
+          sliderStartRef.current?.scrollIntoView({
+            block: 'nearest',
+            behavior: 'smooth'
+          });
+        }
       }
     }
 
@@ -51,10 +61,14 @@ const LibrarySlider = ({ name }: Props) => {
       if (sliderPosition === SliderPositions.END) {
         setStartIndex(prevState => prevState + MAX_ALLOWED_BOOKS_ON_PAGE);
       } else {
-        sliderEndRef.current?.scrollIntoView({
-          block: 'nearest',
-          behavior: 'smooth'
-        });
+        if (screenSize === ScreenSizes.MOBILE && sliderRef.current) {
+          sliderRef.current.scrollLeft += MOBILE_DEVICE_SCROLL;
+        } else {
+          sliderEndRef.current?.scrollIntoView({
+            block: 'nearest',
+            behavior: 'smooth'
+          });
+        }
       }
     }
   };

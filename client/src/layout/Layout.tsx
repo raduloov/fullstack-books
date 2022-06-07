@@ -16,6 +16,7 @@ interface LayoutProps {
 }
 
 export enum ScreenSizes {
+  MOBILE = 'mobile',
   SMALL = 'small',
   LARGE = 'large'
 }
@@ -38,9 +39,14 @@ const Layout = ({ children }: LayoutProps) => {
     };
     getUser();
 
-    width < 1320
-      ? dispatch(uiActions.setScreenSize(ScreenSizes.SMALL))
-      : dispatch(uiActions.setScreenSize(ScreenSizes.LARGE));
+    // Set the screen size in the global store
+    if (width <= 500) {
+      dispatch(uiActions.setScreenSize(ScreenSizes.MOBILE));
+    } else if (width <= 1320) {
+      dispatch(uiActions.setScreenSize(ScreenSizes.SMALL));
+    } else {
+      dispatch(uiActions.setScreenSize(ScreenSizes.LARGE));
+    }
   }, [isAuth, dispatch, getUserData, width]);
 
   const toggleNavbar = () => {
@@ -49,13 +55,13 @@ const Layout = ({ children }: LayoutProps) => {
 
   return (
     <div className="dark:text-white">
-      {screenSize !== ScreenSizes.SMALL && <Navbar isAuth={isAuth} />}
-      {screenSize === ScreenSizes.SMALL && showNavbar && (
+      {screenSize === ScreenSizes.LARGE && <Navbar isAuth={isAuth} />}
+      {screenSize !== ScreenSizes.LARGE && showNavbar && (
         <Drawer toggleNavbar={toggleNavbar} />
       )}
       <main className="px-16 sm:px-2 lg:ml-[20%]">
         <div className="flex items-center justify-between py-10 sm:py-5 sm:px-2">
-          {screenSize === ScreenSizes.SMALL && (
+          {screenSize !== ScreenSizes.LARGE && (
             <HiOutlineMenu
               onClick={toggleNavbar}
               size={25}

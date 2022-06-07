@@ -21,9 +21,9 @@ function App() {
     <BrowserRouter>
       <ToastContainer
         position={
-          screenSize === ScreenSizes.SMALL
-            ? toast.POSITION.BOTTOM_CENTER
-            : toast.POSITION.TOP_RIGHT
+          screenSize === ScreenSizes.LARGE
+            ? toast.POSITION.TOP_RIGHT
+            : toast.POSITION.BOTTOM_CENTER
         }
       />
       <CheckAuth />
