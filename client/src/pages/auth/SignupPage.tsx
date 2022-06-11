@@ -1,7 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { SignUpAuthData } from '../../@types/types';
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import ActivityIndicator from '../../components/UI/ActivityIndicator';
@@ -16,7 +15,7 @@ const SignUpPage = () => {
 
   const { isAuth } = useAppSelector(state => state.auth);
 
-  const { signUp, error, isLoading } = useAuth();
+  const { signUp, isLoading } = useAuth();
 
   const signUpHandler = async (event: FormEvent, authData: SignUpAuthData) => {
     event.preventDefault();
@@ -26,10 +25,6 @@ const SignUpPage = () => {
 
   if (isAuth) {
     return <Navigate to="/" />;
-  }
-
-  if (error) {
-    toast.error(error);
   }
 
   return (

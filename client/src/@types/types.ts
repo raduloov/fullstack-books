@@ -1,14 +1,12 @@
-export type SignUpAuthData = {
+export interface LoginAuthData {
   email: string;
-  name: string;
   password: string;
-  confirmPassword: string;
-};
+}
 
-export type LoginAuthData = {
-  email: string;
-  password: string;
-};
+export interface SignUpAuthData extends LoginAuthData {
+  name: string;
+  confirmPassword: string;
+}
 
 export type BookData = {
   id: string;

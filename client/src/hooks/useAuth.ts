@@ -1,8 +1,9 @@
-import { favoritesActions } from './../store/favoritesSlice';
-import { authActions } from './../store/authSlice';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
+import { authActions } from './../store/authSlice';
+import { favoritesActions } from './../store/favoritesSlice';
 import { useAppDispatch } from './useRedux';
 import { GRAPHQL_URL } from '../apis/graphql';
 import { LoginAuthData, SignUpAuthData } from './../@types/types';
@@ -10,6 +11,9 @@ import { LoginAuthData, SignUpAuthData } from './../@types/types';
 const useAuth = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Reset error state to null to avoid error message spam after initial message
+  error && setError(null);
 
   const dispatch = useAppDispatch();
 
@@ -182,6 +186,10 @@ const useAuth = () => {
     dispatch(authActions.setIsAuth(false));
     dispatch(favoritesActions.setFavoriteBooks([]));
   };
+
+  if (error) {
+    toast.error(error);
+  }
 
   return {
     checkIsAuth,

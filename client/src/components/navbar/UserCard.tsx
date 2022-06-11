@@ -28,6 +28,7 @@ const UserCard = ({ isAuth }: Props) => {
   }, [isAuth]);
 
   const { username, email } = useAppSelector(state => state.auth);
+  console.log(username);
 
   const signOutHandler = () => {
     signOut();

@@ -1,8 +1,19 @@
 const bcrypt = require('bcryptjs');
 const validator = require('validator');
 const jwt = require('jsonwebtoken');
+const nodemailer = require('nodemailer');
+const sendgridTransport = require('nodemailer-sendgrid-transport');
 
 const User = require('../models/user');
+
+const transporter = nodemailer.createTransport(
+  sendgridTransport({
+    auth: {
+      api_key:
+        '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'
+    }
+  })
+);
 
 module.exports = {
   createUser: async function ({ userInput }) {
@@ -34,6 +45,16 @@ module.exports = {
       password: hashedPw
     });
     const createdUser = await user.save();
+
+    const sent = await transporter.sendMail({
+      to: userInput.email,
+      from: 'fullstackbooks@gmail.com',
+      subject: 'Thank you for using Fullstack Books!',
+      html: '<h1>Thank you!</h1>'
+    });
+
+    console.log(sent);
+
     return { ...createdUser._doc, _id: createdUser._id.toString() };
   },
   login: async function ({ email, password }) {

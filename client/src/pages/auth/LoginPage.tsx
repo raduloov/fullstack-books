@@ -1,6 +1,5 @@
 import { FormEvent, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
 import { LoginAuthData } from '../../@types/types';
 import ActivityIndicator from '../../components/UI/ActivityIndicator';
@@ -14,7 +13,7 @@ const LoginPage = () => {
 
   const { isAuth } = useAppSelector(state => state.auth);
 
-  const { signIn, error, isLoading } = useAuth();
+  const { signIn, isLoading } = useAuth();
 
   const loginHandler = async (event: FormEvent, authData: LoginAuthData) => {
     event.preventDefault();
@@ -24,10 +23,6 @@ const LoginPage = () => {
 
   if (isAuth) {
     return <Navigate to="/" />;
-  }
-
-  if (error) {
-    toast.error(error);
   }
 
   return (
@@ -68,6 +63,7 @@ const LoginPage = () => {
         <button
           type="submit"
           className="mt-10 rounded-xl border-2 border-violet-500 dark:border-violet-300 block w-full px-3 h-12 shadow-xl hover:bg-violet-500 dark:hover:bg-violet-300 hover:text-white dark:hover:text-black hover:shadow-md duration-200"
+          disabled={isLoading}
         >
           {isLoading ? <ActivityIndicator color="#fff" size={40} /> : 'Login'}
         </button>
