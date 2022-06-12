@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 const sendgridTransport = require('nodemailer-sendgrid-transport');
 require('dotenv').config();
+const emailHtml = require('../models/emailHtml');
 
 const User = require('../models/user');
 
@@ -50,7 +51,7 @@ module.exports = {
       to: userInput.email,
       from: 'fullstackbooks@gmail.com',
       subject: 'Thank you for using Fullstack Books!',
-      html: '<h1>Thank you!</h1>'
+      html: emailHtml
     });
 
     return { ...createdUser._doc, _id: createdUser._id.toString() };
