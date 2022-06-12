@@ -171,7 +171,9 @@ const useAuth = () => {
         throw new Error(data.errors[0].message);
       }
 
-      return navigate('/');
+      toast('Account successfully created! Please log in.');
+
+      return navigate('/login');
     } catch (err: any) {
       setError(err.message);
     } finally {

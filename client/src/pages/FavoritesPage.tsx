@@ -62,7 +62,7 @@ const FavoritesPage = () => {
               imageUrl={book.imageUrl}
               author={book.author}
               category={book.category}
-              url={book.infoLink}
+              url={book.url}
               key={index}
             />
           ))}
