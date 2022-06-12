@@ -62,7 +62,7 @@ const LoginPage = () => {
 
         <button
           type="submit"
-          className="mt-10 rounded-xl border-2 border-violet-500 dark:border-violet-300 block w-full px-3 h-12 shadow-xl hover:bg-violet-500 dark:hover:bg-violet-300 hover:text-white dark:hover:text-black hover:shadow-md duration-200"
+          className="mt-10 rounded-xl border-2 border-violet-500 dark:border-violet-300 block w-full px-3 h-12 shadow-xl hover:enabled:bg-violet-500 dark:hover:enabled:bg-violet-300 hover:enabled:text-white dark:hover:enabled:text-black hover:enabled:shadow-md disabled:bg-violet-500 dark:disabled:bg-violet-300 duration-200"
           disabled={isLoading}
         >
           {isLoading ? <ActivityIndicator color="#fff" size={40} /> : 'Login'}
