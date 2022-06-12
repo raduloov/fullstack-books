@@ -1,7 +1,7 @@
 import Switch from 'react-switch';
 
 import NavbarItem from '../components/navbar/NavbarItem';
-import COLORS from '../utils/colors';
+import { COLORS } from '../utils/colors';
 import useDarkMode from '../hooks/useDarkMode';
 import UserCard from '../components/navbar/UserCard';
 

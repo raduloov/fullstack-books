@@ -29,9 +29,17 @@ const SignUpPage = () => {
 
   return (
     <div className="w-1/3 sm:w-full sm:px-2 mx-auto dark:text-white">
-      <div className="mb-10">
+      <div className="mb-5">
         <h2 className="text-4xl font-bold mb-2">Create an account</h2>
         <p>Find your next favorite book!</p>
+      </div>
+
+      <div className="bg-red-400 p-2 rounded-md mb-5">
+        <p className="text-lg">Please note</p>
+        <p className="text-sm">
+          Upon creating an account you agree to receive a one-time email, thanking
+          you for using Fullstack Books.
+        </p>
       </div>
 
       <form

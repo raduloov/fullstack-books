@@ -6,7 +6,7 @@ import { BASE_URL } from '../../apis/googleBooks';
 import ShowMoreButton from './ShowMoreButton';
 import getSliderPosition, { SliderPositions } from '../../utils/getSliderPosition';
 import ActivityIndicator from './ActivityIndicator';
-import COLORS from '../../utils/colors';
+import { COLORS } from '../../utils/colors';
 import { useAppSelector } from '../../hooks/useRedux';
 import { ScreenSizes } from '../../layout/Layout';
 

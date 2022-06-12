@@ -46,14 +46,12 @@ module.exports = {
     });
     const createdUser = await user.save();
 
-    const sent = await transporter.sendMail({
+    transporter.sendMail({
       to: userInput.email,
       from: 'fullstackbooks@gmail.com',
       subject: 'Thank you for using Fullstack Books!',
       html: '<h1>Thank you!</h1>'
     });
-
-    console.log(sent);
 
     return { ...createdUser._doc, _id: createdUser._id.toString() };
   },

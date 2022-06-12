@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 
-import COLORS from '../utils/colors';
+import { COLORS } from '../utils/colors';
 import ActivityIndicator from '../components/UI/ActivityIndicator';
 import useBooks from '../hooks/useBooks';
 import { BookData } from '../@types/types';
