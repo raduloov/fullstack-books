@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 
 import { BASE_URL } from '../apis/googleBooks';
 import { COLORS } from '../utils/colors';
@@ -24,9 +23,10 @@ export const SearchPage = () => {
       try {
         setIsLoading(true);
 
-        const { data } = await axios.get(
+        const response = await fetch(
           `${BASE_URL}?q=${searchTerm}&maxResults=${MAX_ALLOWED_BOOKS}`
         );
+        const { data } = await response.json();
 
         setBooks(data.items);
       } catch (err) {
