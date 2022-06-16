@@ -6,7 +6,7 @@ import { FiDelete } from 'react-icons/fi';
 import { uiActions } from '../../store/uiSlice';
 import { useAppDispatch } from '../../hooks/useRedux';
 
-const SearchBar = () => {
+export const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
 
   const dispatch = useAppDispatch();
@@ -51,5 +51,3 @@ const SearchBar = () => {
     </div>
   );
 };
-
-export default SearchBar;

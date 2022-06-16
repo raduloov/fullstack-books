@@ -5,7 +5,7 @@ export enum SliderPositions {
   END = 'end'
 }
 
-const getSliderPosition = (
+export const getSliderPosition = (
   sliderRef: MutableRefObject<HTMLDivElement | null>
 ): string | undefined => {
   const slider = sliderRef.current;
@@ -32,5 +32,3 @@ const getSliderPosition = (
     return SliderPositions.START;
   }
 };
-
-export default getSliderPosition;

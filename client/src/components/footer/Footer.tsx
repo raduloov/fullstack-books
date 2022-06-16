@@ -1,6 +1,6 @@
 import { FaGithub } from 'react-icons/fa';
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <div className="flex justify-center items-center mt-20 mb-10">
       <p className="mr-5">@2022 Yavor Radulov</p>
@@ -15,5 +15,3 @@ const Footer = () => {
     </div>
   );
 };
-
-export default Footer;

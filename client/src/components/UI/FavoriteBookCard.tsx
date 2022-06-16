@@ -2,9 +2,9 @@ import { useMemo } from 'react';
 import { FaTimes } from 'react-icons/fa';
 
 import { FavoriteBookCardProps } from '../../@types/types';
-import getRandomColor from '../../utils/getRandomColor';
+import { getRandomColor } from '../../utils/getRandomColor';
 
-const FavoriteBookCard = ({
+export const FavoriteBookCard = ({
   id,
   title,
   imageUrl,
@@ -56,5 +56,3 @@ const FavoriteBookCard = ({
     </div>
   );
 };
-
-export default FavoriteBookCard;

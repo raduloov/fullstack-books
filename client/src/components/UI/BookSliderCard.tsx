@@ -3,12 +3,12 @@ import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
 import { BookData } from '../../@types/types';
-import useBooks from '../../hooks/useBooks';
+import { useBooks } from '../../hooks/useBooks';
 import { useAppSelector } from '../../hooks/useRedux';
 import { ScreenSizes } from '../../layout/Layout';
-import getRandomColor from '../../utils/getRandomColor';
+import { getRandomColor } from '../../utils/getRandomColor';
 
-const BookSliderCard = ({
+export const BookSliderCard = ({
   id,
   title,
   imageUrl,
@@ -97,5 +97,3 @@ const BookSliderCard = ({
     </div>
   );
 };
-
-export default BookSliderCard;

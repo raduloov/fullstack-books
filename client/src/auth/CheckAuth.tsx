@@ -1,11 +1,9 @@
-import useAuth from '../hooks/useAuth';
+import { useAuth } from '../hooks/useAuth';
 
-const CheckAuth = () => {
+export const CheckAuth = () => {
   const { checkIsAuth } = useAuth();
 
   checkIsAuth();
 
   return <></>;
 };
-
-export default CheckAuth;

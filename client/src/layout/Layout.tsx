@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
 
-import Footer from '../components/footer/Footer';
-import SearchBar from '../components/header/SearchBar';
-import Drawer from '../components/navbar/Drawer';
-import useAuth from '../hooks/useAuth';
+import { Footer } from '../components/footer/Footer';
+import { SearchBar } from '../components/header/SearchBar';
+import { Drawer } from '../components/navbar/Drawer';
+import { useAuth } from '../hooks/useAuth';
 import { useAppDispatch, useAppSelector } from '../hooks/useRedux';
 import { favoritesActions } from '../store/favoritesSlice';
 import { uiActions } from '../store/uiSlice';
 import { HiOutlineMenu } from 'react-icons/hi';
-import Navbar from './Navbar';
-import useWindowDimensions from '../hooks/useWindowDimensions';
+import { Navbar } from './Navbar';
+import { useWindowDimensions } from '../hooks/useWindowDimensions';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -21,7 +21,7 @@ export enum ScreenSizes {
   LARGE = 'large'
 }
 
-const Layout = ({ children }: LayoutProps) => {
+export const Layout = ({ children }: LayoutProps) => {
   const dispatch = useAppDispatch();
   const { showNavbar, screenSize } = useAppSelector(state => state.ui);
   const { isAuth } = useAppSelector(state => state.auth);
@@ -76,5 +76,3 @@ const Layout = ({ children }: LayoutProps) => {
     </div>
   );
 };
-
-export default Layout;

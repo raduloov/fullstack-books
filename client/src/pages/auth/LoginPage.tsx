@@ -2,12 +2,12 @@ import { FormEvent, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 
 import { LoginAuthData } from '../../@types/types';
-import ActivityIndicator from '../../components/UI/ActivityIndicator';
-import useAuth from '../../hooks/useAuth';
+import { ActivityIndicator } from '../../components/UI/ActivityIndicator';
+import { useAuth } from '../../hooks/useAuth';
 
 import { useAppSelector } from '../../hooks/useRedux';
 
-const LoginPage = () => {
+export const LoginPage = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
@@ -77,5 +77,3 @@ const LoginPage = () => {
     </div>
   );
 };
-
-export default LoginPage;

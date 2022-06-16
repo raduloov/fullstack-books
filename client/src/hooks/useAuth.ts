@@ -8,7 +8,7 @@ import { useAppDispatch } from './useRedux';
 import { GRAPHQL_URL } from '../apis/graphql';
 import { LoginAuthData, SignUpAuthData } from './../@types/types';
 
-const useAuth = () => {
+export const useAuth = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -203,5 +203,3 @@ const useAuth = () => {
     error
   };
 };
-
-export default useAuth;

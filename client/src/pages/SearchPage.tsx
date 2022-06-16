@@ -3,13 +3,13 @@ import axios from 'axios';
 
 import { BASE_URL } from '../apis/googleBooks';
 import { COLORS } from '../utils/colors';
-import ActivityIndicator from '../components/UI/ActivityIndicator';
-import BookSliderCard from '../components/UI/BookSliderCard';
+import { ActivityIndicator } from '../components/UI/ActivityIndicator';
+import { BookSliderCard } from '../components/UI/BookSliderCard';
 import { useAppSelector } from '../hooks/useRedux';
 
 const MAX_ALLOWED_BOOKS = 40;
 
-const SearchPage = () => {
+export const SearchPage = () => {
   const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -68,5 +68,3 @@ const SearchPage = () => {
     </div>
   );
 };
-
-export default SearchPage;

@@ -1,9 +1,9 @@
 import Switch from 'react-switch';
 
-import NavbarItem from '../components/navbar/NavbarItem';
+import { NavbarItem } from '../components/navbar/NavbarItem';
 import { COLORS } from '../utils/colors';
-import useDarkMode from '../hooks/useDarkMode';
-import UserCard from '../components/navbar/UserCard';
+import { useDarkMode } from '../hooks/useDarkMode';
+import { UserCard } from '../components/navbar/UserCard';
 
 interface Props {
   isAuth: boolean;
@@ -15,7 +15,7 @@ enum NavbarItemName {
   MORE = 'More'
 }
 
-const Navbar = ({ isAuth }: Props) => {
+export const Navbar = ({ isAuth }: Props) => {
   const { darkMode, toggleDarkMode } = useDarkMode();
 
   return (
@@ -70,5 +70,3 @@ const Navbar = ({ isAuth }: Props) => {
     </div>
   );
 };
-
-export default Navbar;

@@ -9,7 +9,7 @@ interface Props {
   isDisabled?: boolean;
 }
 
-const NavbarItem = ({ to, name, emoji, isDisabled }: Props) => {
+export const NavbarItem = ({ to, name, emoji, isDisabled }: Props) => {
   const dispatch = useAppDispatch();
 
   const enabled = (navData: any) =>
@@ -36,5 +36,3 @@ const NavbarItem = ({ to, name, emoji, isDisabled }: Props) => {
     </NavLink>
   );
 };
-
-export default NavbarItem;

@@ -1,6 +1,6 @@
-import LibrarySlider from '../components/UI/LibrarySlider';
+import { LibrarySlider } from '../components/UI/LibrarySlider';
 
-const MainPage = () => {
+export const MainPage = () => {
   return (
     <section>
       <LibrarySlider name="Fiction" />
@@ -12,5 +12,3 @@ const MainPage = () => {
     </section>
   );
 };
-
-export default MainPage;

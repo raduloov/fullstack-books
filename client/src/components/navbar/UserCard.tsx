@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { FaSignOutAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-import useAuth from '../../hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
 import { authActions } from '../../store/authSlice';
 import { uiActions } from '../../store/uiSlice';
@@ -11,7 +11,7 @@ interface Props {
   isAuth: boolean;
 }
 
-const UserCard = ({ isAuth }: Props) => {
+export const UserCard = ({ isAuth }: Props) => {
   const { getUserData, signOut } = useAuth();
   const dispatch = useAppDispatch();
 
@@ -82,5 +82,3 @@ const UserCard = ({ isAuth }: Props) => {
     </div>
   );
 };
-
-export default UserCard;

@@ -4,7 +4,7 @@ import { useAppDispatch } from './useRedux';
 import { BookData } from './../@types/types';
 import { favoritesActions } from '../store/favoritesSlice';
 
-const useBooks = () => {
+export const useBooks = () => {
   const dispatch = useAppDispatch();
 
   const token = localStorage.getItem('token');
@@ -107,5 +107,3 @@ const useBooks = () => {
     getFavoriteBooks
   };
 };
-
-export default useBooks;

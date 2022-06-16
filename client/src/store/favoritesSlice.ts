@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { BookData, FavoritesState } from './../@types/types';
 
-const favoritesSlice = createSlice({
+export const favoritesSlice = createSlice({
   name: 'favorites',
   initialState: {
     favorites: []
@@ -29,5 +29,3 @@ const favoritesSlice = createSlice({
 });
 
 export const favoritesActions = favoritesSlice.actions;
-
-export default favoritesSlice;

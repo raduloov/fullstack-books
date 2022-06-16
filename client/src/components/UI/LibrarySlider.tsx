@@ -1,11 +1,11 @@
 import { useRef, useState } from 'react';
 
-import useFetch from '../../hooks/useFetch';
-import BookSliderCard from './BookSliderCard';
+import { useFetch } from '../../hooks/useFetch';
+import { BookSliderCard } from './BookSliderCard';
 import { BASE_URL } from '../../apis/googleBooks';
-import ShowMoreButton from './ShowMoreButton';
-import getSliderPosition, { SliderPositions } from '../../utils/getSliderPosition';
-import ActivityIndicator from './ActivityIndicator';
+import { ShowMoreButton } from './ShowMoreButton';
+import { getSliderPosition, SliderPositions } from '../../utils/getSliderPosition';
+import { ActivityIndicator } from './ActivityIndicator';
 import { COLORS } from '../../utils/colors';
 import { useAppSelector } from '../../hooks/useRedux';
 import { ScreenSizes } from '../../layout/Layout';
@@ -23,7 +23,7 @@ interface Props {
   name: string;
 }
 
-const LibrarySlider = ({ name }: Props) => {
+export const LibrarySlider = ({ name }: Props) => {
   const [startIndex, setStartIndex] = useState<number>(0);
   const sliderRef = useRef<HTMLDivElement | null>(null);
   const sliderStartRef = useRef<HTMLDivElement | null>(null);
@@ -122,5 +122,3 @@ const LibrarySlider = ({ name }: Props) => {
     </div>
   );
 };
-
-export default LibrarySlider;

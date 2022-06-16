@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import uiSlice from './uiSlice';
-import authSlice from './authSlice';
-import favoritesSlice from './favoritesSlice';
+import { uiSlice } from './uiSlice';
+import { authSlice } from './authSlice';
+import { favoritesSlice } from './favoritesSlice';
 
-const store = configureStore({
+export const store = configureStore({
   reducer: {
     ui: uiSlice.reducer,
     auth: authSlice.reducer,
@@ -14,5 +14,3 @@ const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-
-export default store;

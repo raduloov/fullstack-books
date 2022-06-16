@@ -1,11 +1,11 @@
 import { useAppSelector } from '../../hooks/useRedux';
-import Navbar from '../../layout/Navbar';
+import { Navbar } from '../../layout/Navbar';
 
 interface Props {
   toggleNavbar: () => void;
 }
 
-const Drawer = ({ toggleNavbar }: Props) => {
+export const Drawer = ({ toggleNavbar }: Props) => {
   const { isAuth } = useAppSelector(state => state.auth);
 
   return (
@@ -18,5 +18,3 @@ const Drawer = ({ toggleNavbar }: Props) => {
     </>
   );
 };
-
-export default Drawer;

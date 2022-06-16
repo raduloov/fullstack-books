@@ -6,7 +6,7 @@ interface Props {
   onClick: (direction: string) => void;
 }
 
-const ShowMoreButton = ({ direction, disabled, onClick }: Props) => {
+export const ShowMoreButton = ({ direction, disabled, onClick }: Props) => {
   return (
     <button
       onClick={() => onClick(direction)}
@@ -24,5 +24,3 @@ const ShowMoreButton = ({ direction, disabled, onClick }: Props) => {
     </button>
   );
 };
-
-export default ShowMoreButton;

@@ -3,11 +3,11 @@ import { Link, Navigate } from 'react-router-dom';
 import { SignUpAuthData } from '../../@types/types';
 import 'react-toastify/dist/ReactToastify.css';
 
-import ActivityIndicator from '../../components/UI/ActivityIndicator';
-import useAuth from '../../hooks/useAuth';
+import { ActivityIndicator } from '../../components/UI/ActivityIndicator';
+import { useAuth } from '../../hooks/useAuth';
 import { useAppSelector } from '../../hooks/useRedux';
 
-const SignUpPage = () => {
+export const SignUpPage = () => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -125,5 +125,3 @@ const SignUpPage = () => {
     </div>
   );
 };
-
-export default SignUpPage;

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const uiSlice = createSlice({
+export const uiSlice = createSlice({
   name: 'ui',
   initialState: {
     searchTerm: '',
@@ -23,5 +23,3 @@ const uiSlice = createSlice({
 });
 
 export const uiActions = uiSlice.actions;
-
-export default uiSlice;
