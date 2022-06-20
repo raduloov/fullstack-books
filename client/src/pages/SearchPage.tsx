@@ -26,7 +26,7 @@ export const SearchPage = () => {
         const response = await fetch(
           `${BASE_URL}?q=${searchTerm}&maxResults=${MAX_ALLOWED_BOOKS}`
         );
-        const { data } = await response.json();
+        const data = await response.json();
 
         setBooks(data.items);
       } catch (err) {
