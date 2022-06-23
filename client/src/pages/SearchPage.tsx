@@ -1,43 +1,34 @@
 import { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 
 import { BASE_URL } from '../apis/googleBooks';
 import { COLORS } from '../utils/colors';
 import { ActivityIndicator } from '../components/UI/ActivityIndicator';
 import { BookSliderCard } from '../components/UI/BookSliderCard';
 import { useAppSelector } from '../hooks/useRedux';
+import { BookData } from '../@types/types';
 
 const MAX_ALLOWED_BOOKS = 40;
 
 export const SearchPage = () => {
-  const [books, setBooks] = useState([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [books, setBooks] = useState<BookData[]>([]);
 
   const { searchTerm } = useAppSelector(state => state.ui);
 
+  const fetchBooks = async () => {
+    const response = await fetch(
+      `${BASE_URL}?q=${searchTerm}&maxResults=${MAX_ALLOWED_BOOKS}`
+    );
+    return await response.json();
+  };
+
+  const { data, isLoading } = useQuery([searchTerm], fetchBooks);
+
   useEffect(() => {
-    const setData = async () => {
-      if (!searchTerm) {
-        return;
-      }
-
-      try {
-        setIsLoading(true);
-
-        const response = await fetch(
-          `${BASE_URL}?q=${searchTerm}&maxResults=${MAX_ALLOWED_BOOKS}`
-        );
-        const data = await response.json();
-
-        setBooks(data.items);
-      } catch (err) {
-        throw err;
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    setData();
-  }, [searchTerm]);
+    if (data?.items && !isLoading) {
+      setBooks(data.items);
+    }
+  }, [searchTerm, data, isLoading]);
 
   return (
     <div className="flex flex-wrap justify-evenly">

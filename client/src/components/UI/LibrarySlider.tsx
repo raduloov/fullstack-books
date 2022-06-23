@@ -1,6 +1,5 @@
 import { useRef, useState } from 'react';
 
-import { useFetch } from '../../hooks/useFetch';
 import { BookSliderCard } from './BookSliderCard';
 import { BASE_URL } from '../../apis/googleBooks';
 import { ShowMoreButton } from './ShowMoreButton';
@@ -9,6 +8,7 @@ import { ActivityIndicator } from './ActivityIndicator';
 import { COLORS } from '../../utils/colors';
 import { useAppSelector } from '../../hooks/useRedux';
 import { ScreenSizes } from '../../layout/Layout';
+import { useQuery } from 'react-query';
 
 const MAX_ALLOWED_BOOKS_ON_PAGE = 5;
 const MAX_ALLOWED_START_INDEX = 155;
@@ -31,9 +31,14 @@ export const LibrarySlider = ({ name }: Props) => {
 
   const { screenSize } = useAppSelector(state => state.ui);
 
-  const { data, isLoading } = useFetch(
-    `${BASE_URL}?q=subject:${name}&startIndex=${startIndex}&maxResults=${MAX_ALLOWED_BOOKS_ON_PAGE}`
-  );
+  const fetchBooks = async () => {
+    const response = await fetch(
+      `${BASE_URL}?q=subject:${name}&startIndex=${startIndex}&maxResults=${MAX_ALLOWED_BOOKS_ON_PAGE}`
+    );
+    return await response.json();
+  };
+
+  const { data, isLoading } = useQuery([startIndex], fetchBooks);
 
   const loadMore = (direction: string) => {
     const sliderPosition = getSliderPosition(sliderRef);
