@@ -38,7 +38,10 @@ export const LibrarySlider = ({ name }: Props) => {
     return await response.json();
   };
 
-  const { data, isLoading } = useQuery([startIndex], fetchBooks);
+  const { data, isLoading } = useQuery(
+    ['books', startIndex, name, MAX_ALLOWED_BOOKS_ON_PAGE],
+    fetchBooks
+  );
 
   const loadMore = (direction: string) => {
     const sliderPosition = getSliderPosition(sliderRef);

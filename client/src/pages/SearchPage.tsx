@@ -22,7 +22,7 @@ export const SearchPage = () => {
     return await response.json();
   };
 
-  const { data, isLoading } = useQuery([searchTerm], fetchBooks);
+  const { data, isLoading } = useQuery(['books', searchTerm], fetchBooks);
 
   useEffect(() => {
     if (data?.items && !isLoading) {
